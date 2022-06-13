@@ -30,37 +30,24 @@ As can be seen in Figure \ref{fig:biopsychosocial}, the aforementioned model has
 %ASSOCIATION WITH MODEL OF EDs------------------------------------
 %\section{Model of mental illness and ED}
 
-In this Master Thesis we have focused on mental illnesses related to Eating Disorders, so we have proceeded to do a search on the modelling of these problems in this Biopsychosocial model in order to attack the topic that interests us most, as mentioned above, the diagnosis. According to studies carried out by experts~\cite{WhatCaus58:online}, the following aspects have potential to be included in each level of the model.
+In this Master Thesis we have focused on mental illnesses related to Eating Disorders, so we have proceeded to do a search on the modelling of these problems in this Biopsychosocial model in order to attack the topic that interests us most, as mentioned above, the diagnosis. According to studies carried out by experts~\cite{WhatCaus58:online}, the aspects marked in Table~\ref{tab:biopsychosocialForEDs} have potential to be included in each level of the model.
 
-%LISTA MUY POCO PROCESADA DESDE ORIGEN, PARAFRASEAR MAS
-\begin{itemize}
-    \item Biological
-    \begin{itemize}
-        \item Family and personal history of dieting and overeating
-        \item High parental control
-        \item Parental substance use disorder
-        \item Type I diabetes (insulin-dependent)
-    \end{itemize}
-    \item Psychological 
-    \begin{itemize}
-        \item Perfectionism
-        \item Novelty-seeking traits 
-        \item Neuroticism, understood as tendency to experience negative mood states, including anxiety, fear, depression, and loneliness.
-        \item Conduct disorder, a behavioral disorder characterized by antisocial behaviors and a disregard for social norms and rules.
-        \item Physical or sexual abuse
-        \item High levels of body image dissatisfaction
-        \item Personal history of an anxiety disorder
-    \end{itemize}
-    \item Social
-    \begin{itemize}
-        \item Weight-related teasing and bullying
-        \item Internalizing body image ideals, such as media messaging that glamorizes thin bodies
-        \item Separation from parent
-        \item Weight stigma, or discriminating against people of a certain weight and size, typically fat people 
-        \item Acculturation, or assimilation into Western culture
-        \item Intergenerational trauma, such as trauma caused by colonization, genocide, and wars
-    \end{itemize}
-\end{itemize}
+\begin{table}[]
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Biological} & \textbf{Psychological} & \textbf{Social} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Family and personal history \\ of dieting and overeating\end{tabular} & Perfectionism & \begin{tabular}[c]{@{}c@{}}Weight-related teasing \\ and bullying\end{tabular} \\ \hline
+High parental control & Novelty-seeking traits & \begin{tabular}[c]{@{}c@{}}Internalizing body image ideals \end{tabular} \\ \hline
+\begin{tabular}[c]{@{}c@{}}Parental substance \\ use disorder\end{tabular} & Neuroticism & Separation from parent \\ \hline
+\begin{tabular}[c]{@{}c@{}}Type I diabetes \\ (insulin-dependent)\end{tabular} & Conduct disorder & Weight stigma \\ \hline 
+& Physical or sexual abuse & \begin{tabular}[c]{@{}c@{}}Acculturation, or assimilation \\ into Western culture\end{tabular} \\ \hline
+& \begin{tabular}[c]{@{}c@{}}High levels of body \\ image dissatisfaction\end{tabular} & Intergenerational trauma\\ \hline
+& \begin{tabular}[c]{@{}c@{}}Personal history of \\ an anxiety disorder\end{tabular} & \\ \hline
+\end{tabular}
+\caption{Biopsychosocial model for Eating Disorders}
+\label{tab:biopsychosocialForEDs}
+\end{table}
+
 
 These indicators potentially show, if present in a subject, the possible suffering of an Eating Disorder, although the final diagnosis must be made by a professional to confirm and start treatment. We would also like to emphasise the process of the medical diagnostic of the main three Eating Disorders: Anorexia Nervosa, Bulimia Nervosa and Binge Eating, which we are tackling hereafter.
 
@@ -129,11 +116,11 @@ With all of the above in mind, the aim of this project is to design and implemen
 
 
 
-\section{Sentiment Analysis}
-Sentiment analysis is the technique on which this Master Thesis has been based, with which it has been possible to process natural language and analyse texts using different Machine Learning algorithms in order to identify and extract information from existing resources. In general rules, we try to determine the position of a person on a specific topic, in our case the Eating Disorders. This position can be either an affective state, a communicative intention or a judgement, being the first one what we are going to focus on here to determine the polarity of users' positions through our platform. 
+\section{Text Classification}
+Text Classification is the technique on which this Master Thesis has been based, with which it has been possible to process natural language and analyse texts using different Machine Learning algorithms in order to identify and extract information from existing resources. In general rules, we try to determine the position of a person on a specific topic, in our case the Eating Disorders. This position can be either an affective state, a communicative intention or a judgement, being the first one what we are going to focus on here to determine the polarity of users' positions through our platform. 
 
 \subsection{Machine Learning}
-As mentioned before, sentiment analysis is based on machine learning, which has different definitions, the first being the one provided by Arthur Samuel in 1959 which defines this concept as \textit{"Field of study that gives computers the ability to learn without being explicitly programmed"}~\cite{samuel1959some} and has been updated over the years as it has undergone a great evolution, having a newest definition such as the one given in~\cite{el2015machine}: \textit{"Machine learning is an evolving branch of computational algorithms that are designed to emulate human intelligence by learning from the surrounding environment"}.
+As mentioned before, text classification is based on machine learning, which has different definitions, the first being the one provided by Arthur Samuel in 1959 which defines this concept as \textit{"Field of study that gives computers the ability to learn without being explicitly programmed"}~\cite{samuel1959some} and has been updated over the years as it has undergone a great evolution, having a newest definition such as the one given in~\cite{el2015machine}: \textit{"Machine learning is an evolving branch of computational algorithms that are designed to emulate human intelligence by learning from the surrounding environment"}.
 
 There are different techniques encompassed within Machine Learning in order to better adapt to the use case study on each occasion. T.Ayodele recounts that there are specifically six types~\cite{ayodele2010types}: Supervised Learning, Unsupervised Learning, Semi-supervised Learning,  Reinforcement Learning, Transduction and Learning to learn, but we will focus on the most relevant ones which are Supervised , Unsupervised and Reinforcement Learning.
 \myparagraph{Supervised Learning}
@@ -162,12 +149,12 @@ One of the most important types of learning is Reinforcement Learning, which is 
 
 This learning is rather empirical, in that each decision intelligence makes is evaluated and rewarded positively or negatively depending on the success of that decision. This is why it often takes many attempts to bring the learning to the desired accuracy.\\
 
-Now that the basics have been understood and the different paths that can be taken using Machine Learning have been explained, we are proceeding to discuss the techniques that are being used when Sentiment Analysis is needed to be implemented.
+Now that the basics have been understood and the different paths that can be taken using Machine Learning have been explained, we are proceeding to discuss the techniques that are being used when Text Classification is needed to be implemented.
 
 
-\subsection{Sentiment Analysis Techniques}
+\subsection{Text Classification Techniques}
 
-To understand the different problems of Sentiment Analysis we need to review the architecture of this, as can be seen in Figure \ref{fig:sentiment-analysis-architecture}, which will generally found in almost all sentiment analysis cases conducted today. It is divided into 5 parts described below:
+To understand the different problems of Text Classification we need to review the architecture of this, as can be seen in Figure \ref{fig:text-clasification-architecture}, which will generally found in almost all text classification cases conducted today. It is divided into 5 parts described below:
 
 
 \begin{itemize}
@@ -175,53 +162,53 @@ To understand the different problems of Sentiment Analysis we need to review the
     \item Document processing: documents are preprocessed using linguistic tools like tokenization, part of speech tagging, lemmatization, stemming, etc.
     \item Lexicons and linguistic resources: supporters of the whole architecture
     \item Document analysis: key part where the documents that are preprocessed are interpreted using the linguistic resources
-    \item Sentiment scores: presentation of the results after analysing documents, using visualization tools.
+    \item Scores: presentation of the results after analysing documents, using visualization tools.
 \end{itemize}
 
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[scale=0.75]{img/state-of-art/sentiment-analysis-architecture.png}
+    \includegraphics[scale=0.75]{img/state-of-art/text-classification-architecture.png}
 
-    \caption{Generic sentiment analysis system architecture~\cite{feldman2013techniques}}
-    \label{fig:sentiment-analysis-architecture}
+    \caption{Generic text classification system architecture~\cite{feldman2013techniques}}
+    \label{fig:text-clasification-architecture}
 \end{figure}
 
 % TECNICAS DE ANALISIS DE SENTIMIENTOS ----------------------------------------
 % https://dl.acm.org/doi/abs/10.1145/2436256.2436274?casa_token=lqpbt-cBaHYAAAAA:x2yhJourTm6uZJepBIzElTx3v759Iv2UVKWlQi1CJJEsUy1qxoJfzYHWRs6XGJy9onXToAkI-Ow2kg
 
-Knowing this architecture, there are some problems to solve while performing the sentiment analysis that the expert have spotted as key for the success of the learning~\cite{feldman2013techniques}. There are different ways of approaching a problem of analysis such as this Master Thesis, generating different approaches that must be know before digging into the technical part. We will discuss now the problems of document-level sentiment analysis, sentence-level sentiment analysis, aspect-based sentiment analysis, comparative sentiment analysis and sentiment lexicon acquisition.
+Knowing this architecture, there are some problems to solve while performing the text classification that the expert have spotted as key for the success of the learning~\cite{feldman2013techniques}. There are different ways of approaching a problem of analysis such as this Master Thesis, generating different approaches that must be know before digging into the technical part. We will discuss now the problems of document-level classification, sentence-level classification, aspect-based classification, comparative classifications and lexicon acquisition.
 
-\myparagraph{Document-level sentiment analysis}
-This form is the simplest of all sentiment analysis, which assumes that the document itself has a value judgement on a main subject expressed by the author of the subject. This approach can be approached with both supervised and unsupervised learning. The first one takes the assumption that there is a finite set of classes(e.g. the simplest case, positive and negative) into which the document must be classified having training data for each one. The unsupervised approach is based on determining the semantic orientation (SO) of certain phrases in the document.
+\myparagraph{Document-level classification}
+This form is the simplest of all text classification, which assumes that the document itself has a value judgement on a main subject expressed by the author of the subject. This approach can be tackled with both supervised and unsupervised learning. The first one takes the assumption that there is a finite set of classes(e.g. the simplest case, positive and negative) into which the document must be classified having training data for each one. The unsupervised approach is based on determining the semantic orientation (SO) of certain phrases in the document.
 
 Researchers have found good results when each document is represented as a simple bag of words, meanwhile the unsupervised approach has worked well in English but it is lacking linguistic resources when switching to other major spoken languages such as Chinese and Spanish and thus, throwing worse results.
 
-\myparagraph{Sentence-level sentiment analysis}
+\myparagraph{Sentence-level classification}
 This approach is considering that a document can contain different opinions about the same subjects, so when we need to have a deeper zoom for analyse it and move to the sentence level this it the approach that is more adequate. It consist in assuming that each sentence has a different opinion, and then it can be relaxed analysing different phrases and collect them into groups for then apply the machine learning techniques.
 
-\myparagraph{Aspect-based sentiment analysis}
-Aspect-based sentiment analysis open the spectrum of entities to which the analysis is done. While the previous two work when the author refers to one entity, in many cases the people talk about different attributes that need to be consider since the opinion about them can be different. This approach is defined as \textit{"research problem that focuses on the recognition of all sentiment expressions within a given document and the aspects to which they refer"}.
+\myparagraph{Aspect-based classification}
+Aspect-based classification opens the spectrum of entities to which the analysis is done. While the previous two work when the author refers to one entity, in many cases the people talk about different attributes that need to be consider since the opinion about them can be different. This approach is defined as \textit{"research problem that focuses on the recognition of all expressions within a given document and the aspects to which they refer"}.
 
-There are two ways of handling kind of analysis, the classical approach of this is extracting all noun phrases (NPs) and keep the ones whose frequency is higher an experimentally determined threshold, and the other one is use a phrase dependency parser that uses known sentiment expressions to search for additional aspects.
+There are two ways of handling kind of analysis, the classical approach of this is extracting all noun phrases (NPs) and keep the ones whose frequency is higher an experimentally determined threshold, and the other one is use a phrase dependency parser that uses known expressions to search for additional aspects.
 
-\myparagraph{Comparative sentiment analysis}
+\myparagraph{Comparative classification}
 Usually the authors provide their opinion about a subject through the comparison with other subjects so the goal of this technique is to assess which sentence contains a comparative opinion and extract the preferred entities in each. Researchers in this field have found the most common words that we use for the 98\% of the cases so with them we can start separating the comparison and analyse them properly~\cite{jindal2006identifying}.
 
-\myparagraph{Sentiment Lexicon Acquisition}
-This part is usually the most crucial resource for the sentiment analysis algorithms and there are three ways to acquire it: i) manually, in which people code the lexicon by hand; ii) dictionary-based approaches in which with seed words the lexicon is expanded using external resources; iii) corpus-based approaches where a set of seed words the lexicon is expanded by using a large corpus of documents.\\
+\myparagraph{Lexicon Acquisition}
+This part is usually the most crucial resource for the text classification algorithms and there are three ways to acquire it: i) manually, in which people code the lexicon by hand; ii) dictionary-based approaches in which with seed words the lexicon is expanded using external resources; iii) corpus-based approaches where a set of seed words the lexicon is expanded by using a large corpus of documents.\\
 
-These are the challenges that can be found when working with Sentiment Analysis that must be known before going into the technical details. After in this Thesis we will talk about how do we tackle them and the resolution of the conflicts that we have found, but before, we want to shed light on the sentiment analysis already carried out on social networks as this will be our case study so, in the next subsection we will expose them.
+These are the challenges that can be found when working with Text Classification that must be known before going into the technical details. After in this Thesis we will talk about how do we tackle them and the resolution of the conflicts that we have found, but before, we want to shed light on the text classification already carried out on social networks as this will be our case study so, in the next subsection we will expose them.
 
 
-\subsection{Conducted studies and projects}
+\section{Related work}
 \label{sec:studies}
 
 %https://dl.acm.org/doi/pdf/10.1145/3366030.3366058
 %https://www.jmir.org/2015/11/e256/
 % INTERESANTE COMPARACION BERT MODEL: https://medinform.jmir.org/2022/2/e34492/
 
-In this Master Thesis thesis we are going to use sentiment analysis in social networks as detailed in Section \ref{sec:goals} so we have made a review of what is already implemented in order to build our system taking into account previous contributions.
+In this Master Thesis thesis we are going to use text classification in social networks as detailed in Section \ref{sec:goals} so we have made a review of what is already implemented in order to build our system taking into account previous contributions.
 
 One of this contributions in which inspiration for this project was found was~\cite{oksanen2015pro} which analysed videos and comments from YouTube channels related to pro-anorexia and anti-anorexia communities. It was found in this study that, although pro-anorexia videos are widespread on the platform, videos that promote help and oppose the community are more popular, having more positive comments and feedback. This makes anti-pro-anorexia communities into helping forces that professionals should give more support to.
 
