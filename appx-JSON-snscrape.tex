@@ -1,0 +1,60 @@
+\chapter{JSON from snscrape}
+\label{appendix:JSONsnscrape}
+
+The JSON that is coming from the scrapping tool snscrape has the following structure.
+
+\begin{lstlisting}[label={code:JSONtweets}, caption={JSON output from snscrape}]
+{
+    "_type": "snscrape.modules.twitter.Tweet", 
+    "url": "https://twitter.com/machinelearnflx/status/1536005123603824641", 
+    "date": "2022-06-12T15:18:53+00:00", 
+    "content": "The best books about machine learning for beginners https://t.co/iO29u5OHzb  #MachineLearning", "renderedContent": "The best books about machine learning for beginners shepherd.com/best-books/mac\u2026  #MachineLearning", 
+    "id": 1536005123603824641, 
+    "user": {"_type": "snscrape.modules.twitter.User", 
+            "username": "machinelearnflx", 
+            "id": 4820804277, 
+            "displayname": "Machine Learning", 
+            "description": "Everything about #MachineLearning, #DeepLearning  #AI  #Bigdata  #Analytics #DataMining, #DataScience #Courses #Learning linktr.ee/machinelearnflx", "rawDescription": "Everything about #MachineLearning, #DeepLearning  #AI  #Bigdata  #Analytics #DataMining, #DataScience #Courses #Learning https://t.co/9yIo7fVa7l", "descriptionUrls": [{"text": "linktr.ee/machinelearnflx", 
+                                "url": "https://linktr.ee/machinelearnflx", 
+                                "tcourl": "https://t.co/9yIo7fVa7l", 
+                                "indices": [121, 144]}], 
+            "verified": false, 
+            "created": "2016-01-17T11:55:58+00:00", 
+            "followersCount": 132067, 
+            "friendsCount": 36853,
+            "statusesCount": 488349, 
+            "favouritesCount": 220, 
+            "listedCount": 2655, 
+            "mediaCount": 11, 
+            "location": "", 
+            "protected": false, "
+            linkUrl": "https://linktr.ee/machinelearnflx", "
+            linkTcourl": "https://t.co/9yIo7fVa7l", 
+            "profileImageUrl": "https://pbs.twimg.com/profile_images/688735459892195329/v8sHaWSG_normal.jpg", 
+            "profileBannerUrl": "https://pbs.twimg.com/profile_banners/4820804277/1504968657", 
+            "label": null, 
+            "url": "https://twitter.com/machinelearnflx"}, 
+    "replyCount": 0, 
+    "retweetCount": 1, 
+    "likeCount": 5, 
+    "quoteCount": 0, 
+    "conversationId": 1536005123603824641, 
+    "lang": "en", 
+    "source": "<a href=\"https://twitter.com/pythonbot_\" rel=\"nofollow\">Postmatico</a>", 
+    "sourceUrl": "https://twitter.com/pythonbot_", 
+    "sourceLabel": "Postmatico", 
+    "outlinks": ["https://shepherd.com/best-books/machine-learning-for-beginners"], 
+    "tcooutlinks": ["https://t.co/iO29u5OHzb"], 
+    "media": null, 
+    "retweetedTweet": null, 
+    "quotedTweet": null, 
+    "inReplyToTweetId": null, 
+    "inReplyToUser": null, 
+    "mentionedUsers": null, 
+    "coordinates": null, 
+    "place": null, 
+    "hashtags": ["MachineLearning"], 
+    "cashtags": null
+}
+
+\end{lstlisting}
