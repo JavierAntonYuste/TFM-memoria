@@ -12,7 +12,7 @@
 
 %This chapter will serve as a description of the methodology that has been followed in order to develop the system and meet the requirements set out in the Chapter~\ref{chap:introduction}. As mentioned, this work arises from the need of tackling a problem in today's society, namely Eating Disorders. More specifically, the aim is to help in the early detection of such illnesses so that they can be treated as soon as possible.
 
-The aim of this project is to help in the early detection of Eating Disorders so that they can be treated as soon as possible. To achieve that, the system's presentation should be easy to handle and understandable for the people who use it. Furthermore, it has to be visually appealing in order to motivate people with a potential Eating Disorder to use it.
+The aim of this project is to help in the early detection of Eating Disorders so that they can be treated as soon as possible. To achieve that, the system's presentation should be easy to handle and understandable for the people who use it. Furthermore, it has to be visually appealing in order to motivate people with a potential Eating Disorder to use it. We want to include the option of performing some actions after the prediction is taken as well.
 
 The presentation layer of this Master Thesis has been designed using a specific methodology based on states called bloc, which will be explained in this chapter. There are diferent parts that are part of this bloc architecture that need to be implemented in order to perform different actions that will enhance the user experience.
 
@@ -23,14 +23,15 @@ The system architecture that has been developed for this Master Thesis can be se
 % Mostrar esquema arquitectura
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.05\textwidth]{img/architecture/architecture.drawio.png}
+    \includegraphics[width=1.05\textwidth]{img/architecture/architecture.png}
     \caption{Simplified diagram of the architecture of the system}
     \label{fig:architecture}
 \end{figure}
 
 
-In this figure you can see a simplified abstract diagram of the structure of our system, consisting of two distinct elements, which are the server made with Flask and the user interface for which Flutter has been used. In the following we will break down this architecture and zoom in on the different parts to explain what the elements represented in the diagram above consist of and what function they have.
+In this figure you can see a simplified abstract diagram of the structure of our system, consisting of two distinct main elements, which are the server made with Flask and the user interface for which Flutter has been used. In the following we will break down this architecture and zoom in on the different parts to explain what the elements represented in the diagram above consist of and what function they have.
 
+Besides, we have integrated the system with an Automation Platform powered by EWE. It includes semantic automation to our system for helping us to include different actions that users can take after the prediction is performed. This enhances the features of the platform and as a consequence, the user experience. We will talk about this topic in a separated Section in this Chapter.
 
 \section{Flask server}
 \label{sec:server}
@@ -131,4 +132,82 @@ This communication is done through the issuing of events from the UI as shown in
 
 In turn, our BLoC-based application is packed with repositories, which serve to obtain data necessary for the application, as in this case is the prediction of our system issued by the Flask server explained before. The repository of our system provides access to long-term state data, in our case via API.
 
-% Planteamiento de la estructura general: repositories, etc
+\section{Task Automation}
+As mentioned before, we have integrated semantic task automation in our system in order to enhance the functionalities of our platform and also the user experience. We have used a Task Automation Service (TAS) hosted by GSI department of the Universidad Politécnica de Madrid which provide us with the ability of online automation.
+
+Our system will be based on Evented WEb (EWE) as we have indicated in the Chapter~\ref{chap:state-of-art}. This ontology has four major classes on its core which are Channel, Event, Action and Rule, and we need to have a semantic representation for putting an automation in place. In this Section we will detail the representations developed for this Master Thesis
+
+Before that, for setting the ground, we would like to pose the architecture on which this semantic task automation is constructed. As discussed it is a service which is running online which is constructed as the Figure~\ref{fig:ewearchitecure} is shown.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{img/architecture/EWEarchitecture.png}
+    \caption{EWE architecture for our system}
+    \label{fig:ewearchitecure}
+\end{figure}
+
+As it can be seen this Automation Server is connected to our user interface through the Action Trigger module of it. This module is the responsible of performing the action based in the input coming from Flutter. It is supported by the other modules in the server which are the channel administration, the rule engine and the rule administration.
+
+The channel and rule administrator are modules that have the same purpose but for different objects supported by the ontology. Both have a repository where the objects are stored and also they are provided with a manager and an editor, which serve for modifying the objects or even delete them. The channel administrator has an extra module which is the event manager which is in charge of administrating the events that a specific channel can have.
+
+The rule engine is the one in charge of running the rules. Rules are patters that are defined in the EWE ontology that create relations among objects. These rules are the responsibles of establishing the relations between different channels, events and actions.
+
+% ARCHITECTURE: pillar de aqui https://books.google.es/books?hl=es&lr=&id=HhKhDQAAQBAJ&oi=fnd&pg=PA33&ots=1Q4idJtH39&sig=6-uS1BX6NGtWcwug1GOMoIlns1s&redir_esc=y#v=onepage&q&f=false
+
+We had to introduce a custom representation of our system in order to automatise the actions we want to take. These actions are to recommend the user to talk to friends, contact an organisation or make an appointment with a specialized doctor. The trigger of this actions is to have a positive response when predicting whether the user suffers an Eating Disorder or not.
+
+
+% Meter representacion creada
+This created and custom representation with the declaration of channel, events and actions can be seen in the following Code~\ref{code:ewerepresentation}.
+
+\begin{lstlisting}[label={code:ewerepresentation}, caption={Custom semantic representation implemented}]
+###################################
+# Channel definition
+###################################
+ewe-prediction:Prediction a owl:Class ;    
+    rdfs:label "Prediction made by platform"@en ;
+    rdfs:comment "This channel represents the prediction emited by the system"@en
+    rdfs:subClassOf ewe:Channel .
+
+###################################
+# Events definition
+###################################
+
+ewe-prediction:PredictionPositive a owl:Class ;
+    rdfs:label "User has been predicted as positive"@en ;
+    rdfs:comment "This Trigger fires when a prediction is positive."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-prediction:Prediction .
+
+ewe-prediction:PredictionNegative a owl:Class ;
+    rdfs:label "User has been predicted as negative"@en ;
+    rdfs:comment "This Trigger fireswhen a prediction is negative."@en ;
+    rdfs:subclassOf ewe:Event ;
+    rdfs:domain ewe-prediction:Prediction .
+
+###################################
+# Actions definition
+###################################
+ewe-prediction:RecommendFriends a owl:Class ;
+    rdfs:label "Recommend Friends"@en ;
+    rdfs:comment "This action will tell to call a friend."@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-prediction:Prediction .
+
+ewe-prediction:RecommendNGO a owl:Class ;
+    rdfs:label "Recommend NGO"@en ;
+    rdfs:comment "This action will tell to contact an organisation"@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-prediction:Prediction .
+
+ewe-prediction:RecommendDoctor a owl:Class ;
+    rdfs:label "Recommend Doctor"@en ;
+    rdfs:comment "This action will tell to contact an expert"@en ;
+    rdfs:subclassOf ewe:Action ;
+    rdfs:domain ewe-prediction:Prediction .
+
+\end{lstlisting}
+
+Besides this, we have added a set of rules which trigger the actions that we have implemented there when a prediction is positive. All of these files need to be uploaded to the Automation Server and
+
+\todo eExplain implementation

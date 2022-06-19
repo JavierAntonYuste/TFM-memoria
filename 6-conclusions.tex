@@ -4,18 +4,43 @@
 
 \clearpage
 \section{Achieved Goals}
+We are going to review in this Chapter what has been done and how it is matching with the objectives we posed in the Section~\ref{sec:goals}. We will revisit the key points of this projects that were carried out to complete it.
 
-The achieved goals for this project are the following ones:
-
+To begin with, the main objective was to \textbf{develop a system for the analysis and detection of Eating Disorder-related mental health problems in social networks}. We have put in place the platform that we called PredEating in which users can consult the possibility of suffering an Eating Disorder. The goals that we achieved for making that possible are:
 \begin{itemize}
-    \item ...
+    \item \textbf{Create and tune a Machine Learning algorithm working with NLP}. We have done several tasks in order to achieve this goal, which are detailed here.
+    \begin{itemize}
+        \item \textit{Data obtaining and analysis}. Firstly, we get data for starting researching. A dataset was found specified in Mental Health diseases and we filtered by Eating Disorders.
+        \item \textit{Preprocessing of data}. Once we have the necessary data, we process the data in order to be able to ingest it to our model, keeping the most relevant parts of the texts for us.
+        \item \textit{Training and optimisation of Machine Learning model}. We ingested the data to different models and performed several statistical studies in order to see which one was adapting better to our data.
+    \end{itemize}
+    \item \textbf{Develop a web server that performs and serves he prediction}. In order to provide our system with the prediction, we needed to have a platform where we dispatch the requests. For implementing it we have performed the following tasks.
+    \begin{itemize}
+        \item \textit{Get data from Twitter}. We obtain the data from Twitter by scrapping the posts that a certain user have sent.
+        \item \textit{Import the model for performing the prediction}. We import the model we have trained in the previous step for making the prediction with the Twitter data that we have scrapped.
+        \item \textit{Serving of response in JSON format}. After making the prediction, we serve it to the user interface by using JSON format using an API format.
+        \item \textit{Providing additional information}. We send additional information that enhances user experience together with the prediction to the user interface.
+    \end{itemize}
+    \item \textbf{Design and implement an easy-to-use user interface}. We have implemented an application cross-platform in which the user can analyse Twitter profiles. They can interact with the system and get more statistics if they want to, and if the prediction is positive, some actions have been implemented based on the automation platform.
+    \item \textbf{Integrate our platform with an external system for automatising processes}. We provide an enhanced user experience by using automatic tasks that are triggered once the prediction with a positive result is received.
 \end{itemize}
 
-\clearpage
+
 \section{Conclusion}
 \label{sec:conclusion}
 
-The project has fulfilled the proposed objectives, but we must refer to each one of these objectives in to draw a general conclusion.
+HACER
+
+The project has fulfilled the proposed objectives, but we must refer 
+to each one of these objectives in to draw a general conclusion.
 
 \section{Future work}
+The PredEating platform has been implemented but as the machine learning field is that big, there is always room for improvement. In our case, there are some actions that can be benefitial to the system if they are studied and implemented.
+\begin{itemize}
+    \item Dataset variation: HABLAR SOBRE TENER MAS DATOS
+    \item Better optimisation of BERT models
+    \item Discern between Eating Disorders
+    \item User experience features
+    \item Addition of more automations
+\end{itemize}
 

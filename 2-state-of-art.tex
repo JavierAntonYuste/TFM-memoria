@@ -290,7 +290,34 @@ This part is usually the most crucial resource for the text classification algor
 These are the challenges that can be found when working with Text Classification that must be known before going into the technical details. After in this Thesis we will talk about how do we tackle them and the resolution of the conflicts that we have found, but before, we want to shed light on the text classification already carried out on social networks as this will be our case study so, in the next subsection we will expose them.
 
 
+\section{Semantic Task Automation}
 
+Semantic task automation will be used in this project as we mentioned in Section~\ref{sec:goals}. Using it, we aim to provide user features for enhancing our system and provide it with different functionalities. To learn more about it, a review of existing resources on task automation services and in semantic techniques, concretely EWE has been conducted has been carried.  The outcomes are going to be described here.
+
+\subsection{Task Automation Services}
+% https://www.gsi.upm.es/ontologies/ewe/ pillar de aqui estructura
+Nowadays, automation is found in almost every task we perform, so much so that we are even unable to recognise that automation. They have also spread to the Web field, raising the need to be able to orchestrate and centralise them. Hence the need to create TAS or Task Automation Services~\cite{7155422}.
+
+These Task Automation is a area which is increasing rapidly in these times and Task Automation Service provide a friendly user interface. They can be presented in really different ways, such as websites or as mobile apps, where non-technical users can create their own automations in them. These automations take the form of Event-Condition-Action in which some actions are executed when a trigger happens. 
+
+Some of the most popular services are called: ifttt, Zapier, CouldWork, Onx, Atooma or AutomateIt.
+
+One interesting branch that is part of Semantic Web which is being investigated~\cite{electronics9081194} is the Task Automation Services using semantic techniques coming. This allows to have a standard data schema designed to adapt to a lot of use cases. In this context, we have analysed and researched on Evented WEb ontology (EWE), which is described in the following.
+
+\subsection{EWE}
+% EWE MAIN ENTITIES  DIAGRAM
+Evented WEb ontology or EWE~\cite{EWEOntol89:online} is an ontology which aims to enable the publishing of raw data from TAS, enable rule interoperability and provide a base vocabulary for building specific vocabularies for domains like Twitter Task Ontology or Evernote Task Ontology.
+
+The diagram that represents EWE and its main concepts is the one that can be found in Figure~\ref{fig:ewediagram}. On it we can find the four cores of the ontology which are: Channel, Action, Event and Rule. 
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[scale=0.5]{img/state-of-art/EWEdiagram.png}
+    \caption{Diagram of EWE entities and its relations}
+    \label{fig:ewediagram}
+\end{figure}
+
+The class \textit{Channel} defines an individual that can generate events, execute actions or can perform both. The class \textit{Event} is a particular occurrence in the process, and allows users to define the \textit{Rules} based on them. The class \textit{Action} defines the execution that can be taken after a certain \textit{Channel} triggers an \textit{Event}.The \textit{Rule} is the one defined the ECA model described before, in which a user can select which \textit{Channel} triggers which event that is landed executing a certain \textit{Action}.
 
 \section{Related work}
 \label{sec:studies}
