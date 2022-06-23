@@ -14,10 +14,6 @@
 
 The aim of this project is to help in the early detection of Eating Disorders so that they can be treated as soon as possible. To achieve that, the system's presentation should be easy to handle and understandable for the people who use it. Furthermore, it has to be visually appealing in order to motivate people with a potential Eating Disorder to use it. We want to include the option of performing some actions after the prediction is taken as well.
 
-The presentation layer of this Master Thesis has been designed using a specific methodology based on states called bloc, which will be explained in this chapter. There are diferent parts that are part of this bloc architecture that need to be implemented in order to perform different actions that will enhance the user experience.
-
-To serve this presentation layer with data, a server has been implemented in which an API has been constructed. The objective of this is to consult the information about the required user and predict the suffering of an Eating Disorder. This server makes calls to the Twitter API also to make the prediction using the Machine Learning model previously preloaded on the same server. The model that has been followed for implementing this part of the system is called Front Controller, which will be explained here.
-
 The system architecture that has been developed for this Master Thesis can be seen in the Figure~\ref{fig:architecture}, where you can find the interactions between the subcomponents in a simplified diagram.
 
 % Mostrar esquema arquitectura
@@ -31,6 +27,10 @@ The system architecture that has been developed for this Master Thesis can be se
 
 In this figure you can see a simplified abstract diagram of the structure of our system, consisting of two distinct main elements, which are the server made with Flask and the user interface for which Flutter has been used. In the following we will break down this architecture and zoom in on the different parts to explain what the elements represented in the diagram above consist of and what function they have.
 
+The presentation layer of this Master Thesis has been designed using a specific methodology based on states called bloc, which will be explained in this chapter. There are diferent parts that are part of this bloc architecture that need to be implemented in order to perform different actions that will enhance the user experience.
+
+To serve this presentation layer with data, a server has been implemented in which an API has been constructed. The objective of this is to consult the information about the required user and predict the suffering of an Eating Disorder. This server makes calls to the Twitter API also to make the prediction using the Machine Learning model previously preloaded on the same server. The model that has been followed for implementing this part of the system is called Front Controller, which will be explained here.
+
 Besides, we have integrated the system with an Automation Platform powered by EWE. It includes semantic automation to our system for helping us to include different actions that users can take after the prediction is performed. This enhances the features of the platform and as a consequence, the user experience. We will talk about this topic in a separated Section in this Chapter.
 
 \section{Flask server}
@@ -43,7 +43,7 @@ Besides, we have integrated the system with an Automation Platform powered by EW
  
  
  % MODELO SEGUIDO en  arquitectura: FRONT CONTROLLER
- The model followed to implement this Flask server is the Front Controller model, which can be seen in the Figure~\ref{fig:front-controller}. This model is based on a controller that handles all requests from a server, which is useful to achieve flexibility and reuse code without redundancy.
+ The architecture pattern followed to implement this Flask server is the Front Controller model, which can be seen in the Figure~\ref{fig:front-controller}. This model is based on a controller that handles all requests from a server, which is useful to achieve flexibility and reuse code without redundancy.
 
  
 \begin{figure}[h]
@@ -57,17 +57,15 @@ These front controllers are normally used in web applications like the one in th
 
 This was the most interesting option and the one that best suited what we were looking for in this Master Thesis, as we took into account the features that we needed and the simplicity the model provides to perform and implement those features. 
 
-The alternative would have been to have individual scripts that respond to each request, which can lead to duplication of both code and objects. Finally, this implementation was discarded because of the benefits that a front controller brings in terms of escalation and life.
-
 The features that we required from this sever are as mentioned before, three main tasks, which are data extraction, data processing with its prediction, and data serving through the API which we will break them out in the following.
 
 % 1. Extraccion de datos
 \myparagraph{Data extraction}
 The focus of this project is on the social network Twitter and because of this, we need to extract information from Twitter in order to achieve our goal. We want to analyse per user the suffering of an Eating Disorder so we need to extract the latest tweets of a specific person in order to treat them and introduce them as input to our model.
 
-For this, we used a Python-based tool called snscrape~\cite{JustAnot83:online}, which can extract data from the Twitter API without us having to authenticate ourselves. The possibility of creating a Developer account on Twitter was considered and emails were exchanged with the administration, but it was found that there were many more complications than using this tool. 
+For this, we used a Python-based tool called snscrape~\cite{JustAnot83:online}, which can extract data from the Twitter API without us having to authenticate ourselves. 
 
-This snscrape Python package that can be easily installed using the pip manager, allows us to take as many tweets as we want from a profile and put them in a text file in JSON format, as it can be seen in the code block described in Appendix~\ref{appendix:JSONsnscrape}.
+This snscrape Python package that can be easily installed using the pip manager. It allows us to take as many tweets as we want from a profile, and put them in a text file in JSON format. An example of this can be seen in the code block described in Appendix~\ref{appendix:JSONsnscrape}.
 
 So, it was decided to use snscrape for its simplicity and for not needing to authenticate to the API. With the command written in the Code~\ref{code:snscrape} we can access the 1000 most recent tweets of the user with the identifier \$username and save them in JSON format in the file user-tweets.json.
 
@@ -77,7 +75,7 @@ Subsequently, we will read this file to be able to process the information taken
 snscrape --jsonl --max-results 1000 twitter-user $username > user-tweets.json
 \end{lstlisting}
 
-Once we have the file ready, we read it using the pandas library in order to ingest it into our model, preprocessing it beforehand. This file is given a personal character because after reading the file, it is deleted from the server so as not to generate overload. Now, in the next paragraph, we will explain how we preprocess the text once it is read.
+Once we have the file ready, we read it using the pandas library in order to ingest it into our model, preprocessing it beforehand. This file is given a temporal character because after reading the file, it is deleted from the server so as not to generate overload. Now, in the next paragraph, we will explain how we preprocess the text once it is read.
 
 % 2. Procesamiento de datos (empaquetamiento de modelo) / wordcloud y prediccion
 \myparagraph{Data processing and prediction}
@@ -107,21 +105,24 @@ The simplified output obtained by querying the API as can be seen in the Code~\r
 \end{lstlisting}
 
 
-In order to be able to send the wordcloud image through the API, it has to be encoded in base64 format. Subsequently, it has to be decoded in the application part in order to be displayed.\\\\
+In order to be able to send the wordcloud image through the API, it has to be encoded in base64 format. Subsequently, it has to be decoded in the application part in order to be displayed.\\
+
+Besides these mentioned tasks that are directly related to the web server functioning, we have also equipped the module with a Semantic Events Trigger. This block is throwing an event against the Task Automation Server in order to trigger actions that are reflected on the user interface. We will talk about this integration in the Section~\ref{sec:taskautomation}.
+
 In the following section we will focus on the application that the user uses, presenting its parts, the model used in its design and its structure.
 \section{Flutter application}
 % Presentacion de la aplicacion
 The application aims to have a clear and guided user experience that engages the user for using it. It should have a clear flow for easing its manipulation and really help the person who uses it. Because of that we used Flutter for implementing it.
 
 %Multiplataforma
-It is a Flutter-based as it is mentioned, so that implies that it is a cross-platform application that can be seen in Android, iOS and web, which make it polivalent. Its content is dinamically treated so it adjusts to all kinds and sizes of screen, which has been also take into account in the design process.
+It is a Flutter-based as it is mentioned, so that implies that it is a cross-platform application that can be run in Android, iOS and web, which make it polivalent. Its content is dinamically treated so it adjusts to all kinds and sizes of screen, which has been also take into account in the design process.
 
 % Diseño de la app: BLOC
 The design pattern followed is called BloC, which makes our application based on separate components. These components contain only the business logic, \textit{i.e.} the logic that determines how information can be created, stored and changed.
 
-BLoC is widely used in applications developed in Flutter, as it is based on widgets and BLoC helps to communicate these widgets with other components of the application.
+BLoC is widely used in applications developed in Flutter, as it is based on widgets and this pattern provides the support to communicate these widgets with other components of the application.
 
-This communication is done through the issuing of events from the UI as shown in the Figure~\ref{fig:bloc}. BLoC interprets this and transforms it into states and emits streams back to the UI to make the relevant changes to the interface. 
+This communication is done through the issuing of events from the UI as shown in the Figure~\ref{fig:bloc}. BLoC components receive this events and take the actions that are needed, changing their state. Afterwards, they emit back stream back to the UI to make the relevant changes to the interface. 
 
 \begin{figure}[h]
     \centering
@@ -132,7 +133,10 @@ This communication is done through the issuing of events from the UI as shown in
 
 In turn, our BLoC-based application is packed with repositories, which serve to obtain data necessary for the application, as in this case is the prediction of our system issued by the Flask server explained before. The repository of our system provides access to long-term state data, in our case via API.
 
+Furthermore, we have connected this user interface with the Task Automation Server. When a positive prediction is done, the webserver will trigger an event against the automation platform and the response of this platform will be received in our Flutter application. With this data some actions are displayed in user screen in order to help to advance in the diagnosis process.
+
 \section{Task Automation}
+\label{sec:taskautomation}
 As mentioned before, we have integrated semantic task automation in our system in order to enhance the functionalities of our platform and also the user experience. We have used a Task Automation Service (TAS) hosted by GSI department of the Universidad Politécnica de Madrid which provide us with the ability of online automation.
 
 Our system will be based on Evented WEb (EWE) as we have indicated in the Chapter~\ref{chap:state-of-art}. This ontology has four major classes on its core which are Channel, Event, Action and Rule, and we need to have a semantic representation for putting an automation in place. In this Section we will detail the representations developed for this Master Thesis
@@ -146,15 +150,17 @@ Before that, for setting the ground, we would like to pose the architecture on w
     \label{fig:ewearchitecure}
 \end{figure}
 
-As it can be seen this Automation Server is connected to our user interface through the Action Trigger module of it. This module is the responsible of performing the action based in the input coming from Flutter. It is supported by the other modules in the server which are the channel administration, the rule engine and the rule administration.
+As it can be seen this Automation Server is connected both to our user interface and our web server. When a positive prediction is performed in the Flask server, an event is triggered, arriving to the Events Manager of the Task Automation Server. Once the event is received, it interacts with the Rule Engine which decides what to do with that event depending on the configured rules.
 
-The channel and rule administrator are modules that have the same purpose but for different objects supported by the ontology. Both have a repository where the objects are stored and also they are provided with a manager and an editor, which serve for modifying the objects or even delete them. The channel administrator has an extra module which is the event manager which is in charge of administrating the events that a specific channel can have.
+The engine is the one in charge of running the rules, which are patterns that are defined in the EWE ontology that create relations among objects. In the rules, relationships between different channels, events and actions are defined.
 
-The rule engine is the one in charge of running the rules. Rules are patters that are defined in the EWE ontology that create relations among objects. These rules are the responsibles of establishing the relations between different channels, events and actions.
+Besides, Rule Engine is connected with the Channel and the Rule Administrators, which provide the necessary resources for dispatching the rule. These are modules that have the same purpose but for different objects supported by the ontology. Both have a repository where the objects are stored and also they are provided with a manager and an editor, which serve for modifying the objects or even delete them.
+
+When the rule is processed in the Rule Engine, it is contacting the Actions Trigger which activates the action that is indicated. This Actions Trigger is connected directly to the Flutter Interface, unleashing the necessary process that are desired for the user.
 
 % ARCHITECTURE: pillar de aqui https://books.google.es/books?hl=es&lr=&id=HhKhDQAAQBAJ&oi=fnd&pg=PA33&ots=1Q4idJtH39&sig=6-uS1BX6NGtWcwug1GOMoIlns1s&redir_esc=y#v=onepage&q&f=false
 
-We had to introduce a custom representation of our system in order to automatise the actions we want to take. These actions are to recommend the user to talk to friends, contact an organisation or make an appointment with a specialized doctor. The trigger of this actions is to have a positive response when predicting whether the user suffers an Eating Disorder or not.
+We had to define a semantic model of our system in order to automatise the actions we want to take. These actions recommend the user to talk to friends, contact an organisation or make an appointment with a specialized doctor. These actions are triggered when a positive response is made.
 
 
 % Meter representacion creada
@@ -164,8 +170,8 @@ This created and custom representation with the declaration of channel, events a
 ###################################
 # Channel definition
 ###################################
-ewe-prediction:Prediction a owl:Class ;    
-    rdfs:label "Prediction made by platform"@en ;
+ewe-ed:EDPrediction a owl:Class ;    
+    rdfs:label "Prediction of Eating Disorder made by platform"@en ;
     rdfs:comment "This channel represents the prediction emited by the system"@en
     rdfs:subClassOf ewe:Channel .
 
@@ -173,41 +179,40 @@ ewe-prediction:Prediction a owl:Class ;
 # Events definition
 ###################################
 
-ewe-prediction:PredictionPositive a owl:Class ;
-    rdfs:label "User has been predicted as positive"@en ;
-    rdfs:comment "This Trigger fires when a prediction is positive."@en ;
+ewe-ed:EDPredictionPositive a owl:Class ;
+    rdfs:label "User has been predicted as positive in Eating Disorder"@en ;
+    rdfs:comment "This Trigger fires when a prediction is positive in Eating Disorder."@en ;
     rdfs:subclassOf ewe:Event ;
-    rdfs:domain ewe-prediction:Prediction .
+    rdfs:domain ewe-ed:EDPrediction .
 
-ewe-prediction:PredictionNegative a owl:Class ;
-    rdfs:label "User has been predicted as negative"@en ;
-    rdfs:comment "This Trigger fireswhen a prediction is negative."@en ;
+ewe-ed:EDPredictionNegative a owl:Class ;
+    rdfs:label "User has been predicted as negative in Eating Disorder"@en ;
+    rdfs:comment "This Trigger fires when a prediction is negative in Eating Disorder."@en ;
     rdfs:subclassOf ewe:Event ;
-    rdfs:domain ewe-prediction:Prediction .
+    rdfs:domain ewe-ed:EDPrediction .
 
 ###################################
 # Actions definition
 ###################################
-ewe-prediction:RecommendFriends a owl:Class ;
+ewe-ed:RecommendFriends a owl:Class ;
     rdfs:label "Recommend Friends"@en ;
     rdfs:comment "This action will tell to call a friend."@en ;
     rdfs:subclassOf ewe:Action ;
-    rdfs:domain ewe-prediction:Prediction .
+    rdfs:domain ewe-ed:EDPrediction .
 
-ewe-prediction:RecommendNGO a owl:Class ;
+ewe-ed:RecommendNGO a owl:Class ;
     rdfs:label "Recommend NGO"@en ;
     rdfs:comment "This action will tell to contact an organisation"@en ;
     rdfs:subclassOf ewe:Action ;
-    rdfs:domain ewe-prediction:Prediction .
+    rdfs:domain ewe-ed:EDPrediction .
 
-ewe-prediction:RecommendDoctor a owl:Class ;
+ewe-ed:RecommendDoctor a owl:Class ;
     rdfs:label "Recommend Doctor"@en ;
     rdfs:comment "This action will tell to contact an expert"@en ;
     rdfs:subclassOf ewe:Action ;
-    rdfs:domain ewe-prediction:Prediction .
+    rdfs:domain ewe-ed:EDPrediction .
 
 \end{lstlisting}
 
-Besides this, we have added a set of rules which trigger the actions that we have implemented there when a prediction is positive. All of these files need to be uploaded to the Automation Server and
+Besides this, we have added a set of rules which trigger the actions that we have implemented there when a prediction is positive. All of this will be charged into the Task Automation Server so it can understand and talk our system's language.
 
-\todo eExplain implementation

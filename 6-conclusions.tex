@@ -4,42 +4,41 @@
 
 \clearpage
 \section{Achieved Goals}
-We are going to review in this Chapter what has been done and how it is matching with the objectives we posed in the Section~\ref{sec:goals}. We will revisit the key points of this projects that were carried out to complete it.
+A review is going to be conducted in this Chapter on what has been done and how it is matching with the objectives we posed in the Section~\ref{sec:goals}. It will revisit the key points of this project that were carried out in order to complete it.
 
  We have put in place the platform that we called PredEating in which users can consult the possibility of suffering an Eating Disorder. The goals that we achieved for making that possible are:
 \begin{itemize}
     \item \textbf{Create and tune a Machine Learning algorithm working with NLP}. We have done several tasks in order to achieve this goal, which are detailed here.
     \begin{itemize}
-        \item \textit{Data obtaining and analysis}. Firstly, we get data for starting researching. A dataset was found specified in Mental Health diseases and we filtered by Eating Disorders.
-        \item \textit{Preprocessing of data}. Once we have the necessary data, we process the data in order to be able to ingest it to our model, keeping the most relevant parts of the texts for us.
-        \item \textit{Training and optimisation of Machine Learning model}. We ingested the data to different models and performed several statistical studies in order to see which one was adapting better to our data.
+        \item \textit{Data obtention and analysis}. Firstly, we got data for starting researching. A dataset specific in Mental Health diseases was found and we filtered the illnesses corresponding to Eating Disorders.
+        \item \textit{Preprocessing of data}. Once we had the necessary data, we processed it in order to be able to ingest this information to our model, keeping the most relevant parts of the texts.
+        \item \textit{Training and validation of Machine Learning model}. We ingested the data to different models and performed several statistical studies in order to see which one was adapting better to our data.
     \end{itemize}
-    \item \textbf{Develop a web server that performs and serves he prediction}. In order to provide our system with the prediction, we needed to have a platform where we dispatch the requests. For implementing it we have performed the following tasks.
+    \item \textbf{Develop a web server that performs and serves the prediction}. In order to provide our system with the prediction, we needed to have a platform where we dispatch the requests. For implementing it we have performed the following tasks.
     \begin{itemize}
-        \item \textit{Get data from Twitter}. We obtain the data from Twitter by scrapping the posts that a certain user have sent.
-        \item \textit{Import the model for performing the prediction}. We import the model we have trained in the previous step for making the prediction with the Twitter data that we have scrapped.
-        \item \textit{Serving of response in JSON format}. After making the prediction, we serve it to the user interface by using JSON format using an API format.
-        \item \textit{Providing additional information}. We send additional information that enhances user experience together with the prediction to the user interface.
+        \item \textit{Get data from Twitter}. We obtained the data from Twitter by scrapping the posts that a certain user have sent.
+        \item \textit{Import the model for performing the prediction}. We imported the model that we have trained in the previous step for making the prediction with the Twitter data that we had scrapped.
+        \item \textit{Serving of response in JSON format}. After making the prediction, we served it to the user interface by using JSON format using an API format.
+        \item \textit{Providing additional information}. We sent additional information that enhances user experience together with the prediction to the user interface.
     \end{itemize}
-    \item \textbf{Design and implement an easy-to-use user interface}. We have implemented an application cross-platform in which the user can analyse Twitter profiles. They can interact with the system and get more statistics if they want to, and if the prediction is positive, some actions have been implemented based on the automation platform.
-    \item \textbf{Integrate our platform with an external system for automatising processes}. We provide an enhanced user experience by using automatic tasks that are triggered once the prediction with a positive result is received.
+    \item \textbf{Design and implement an easy-to-use user interface}. We have implemented a cross-platform application in which the user can analyse Twitter profiles. They can interact with the system and get more statistics if they want to. If the prediction is positive, some actions have been implemented based on the automation platform.
+    \item \textbf{Integrate our platform with an external system for automatising processes}. We provided an enhanced user experience by using automatic tasks that are triggered once the prediction with a positive result is received.
 \end{itemize}
-
 
 \section{Conclusion}
 \label{sec:conclusion}
 
 To begin with, the main objective of this project was to \textbf{develop a system for the analysis and detection of Eating Disorder-related mental health problems in social networks}.
 
-This objective has been achieved following the steps detailed in the previous subsection, which recapitulate the goals marked in the Section~\ref{sec:goals}. Data has been obtained for training and optimising a Machine Learning model. This model has been exported into a web server which perform actions on scrapped Twitter data dispatches the results as a API response. The user interface interprets this response for showing the prediction to the user and it also brings some facilities in case it is positive. The integration that we have implemented opens a wide variety of possibilities in which the platform can develop into. 
+This objective has been achieved following the steps detailed in the previous subsection, which recapitulate the goals marked in the Section~\ref{sec:goals}. Data has been obtained for training and optimising a Machine Learning model. This model has been exported into a web server which perform actions on scrapped Twitter data dispatches the results as a API response. The user interface interprets this response for showing the prediction to the user, bringing also some facilities in case it is positive. The integration that we have implemented opens a wide variety of possibilities in which the platform can develop into. 
 
 We can conclude that this platform has potential to help patients in the earliest stages of the disease. It should be tested in real cases but for now, it can be considered as a potential improvement in the sanity process if it is finally deployed into a production environment. We have also seen the importance of social networks, both for getting data and for exploring how users are interacting with it. These can be exploited to construct beneficial applications for the society and its good.
 
 
 \section{Future work}
-The PredEating platform has been implemented but as the machine learning field is that big, there is always room for improvement. In our case, there are some actions that can be beneficial to the system if they are studied and implemented.
+The PredEating platform has been implemented but as the machine learning field is that big and changeable, there is always room for improvement. In our case, there are some actions that can be beneficial to the system if they are studied and implemented.
 \begin{itemize}
-    \item \textbf{Dataset variation}. We should try to train the models and do the processing with other data to give versatility to our Machine Learning model. With this we could improve prediction and give more perspective to our learning.
+    \item \textbf{Dataset variation}. Models and do the processing needs to be done with other data to give versatility and reliability to our Machine Learning model. With this the prediction could be improved and it will give more perspective to the learning.
     \item \textbf{Better optimisation of BERT models}. A simple analysis of BERT models has been made. Due to their complexity, there are many parameters that can be optimised using different configurations to look for synergies between them. For the future it is an improvement that could be made as these models usually give better results than the ones obtained in this Master Thesis.
     \item \textbf{Discern between Eating Disorders}. Another improvement that can be implemented in this project is to train the Machine Learning algorithm to develop the ability to differentiate between the different Eating Disorders that are present in society.
     \item \textbf{User experience features}. A simplistic, result-oriented approach to the application has been followed, although this application can be improved by including features that are useful to the user. These new features can range from being able to integrate new automations to including new screens and navigation modes in the user interface.
