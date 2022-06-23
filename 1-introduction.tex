@@ -45,13 +45,13 @@ The risk of suffering from one of these disorders has increased, with patients w
 % NO USADO evolucion EDs en COVID https://aepnya.eu/index.php/revistaaepnya/article/view/850
 % NO USADO lo mismo https://www.aepnya.eu/index.php/revistaaepnya/article/view/402
 
-Experts comment the importance of raising awareness and implement measures to combat pandemic side effects~\cite{touyz2020eating}.These mentioned studies are not based on conjecture, but rather, through an exhaustive and quantitative analysis, as the ones performed in~\cite{j2022impact} or~\cite{vall2021impacto}. 
+The comprehensive and qualitative analyses carried out in~\cite{touyz2020eating} have shown that it is important to combat pandemic side efects. There have been other studies complenting this already mentioned like the ones performed in~\cite{j2022impact} or~\cite{vall2021impacto}.
 
 It has been shown that subjects suffering from an Eating Disorder have experienced deteriorating symptoms, increased isolation and, as a consequence, an increase in hospital admissions because of COVID-19. Specifically, it has been found that on average admissions have increased by 48\% compared to pre-pandemic times. In addition, it was found that 36\% of patients' symptoms increased, especially those related to anxiety and depression.
 
 A major impact on the pandemic was discovered on young women between 14 and 35 years of age in the area of mental health problems. These results were shown in demographic studies carried out~\cite{vall2021impacto} which report severe or very severe levels of illness and symptoms. Namely, 30.8\% of the sample analysed suffered from depression, 25.4\% suffered from anxiety and 20.5\% from stress. Significant gender differences were found in terms of eating disorders, and it was found that some life events suffered by these people which generate stress are related to eating disorders.
 
-The aforementioned work, proposes a model for analysing the psychological impact of confinement, as can be seen in Figure \ref{fig:vall_diagram}. It is possible to appreciate the negative correlation between psychological wellbeing and the symptomatologies that occur in mental illnesses. Furthermore, psychological wellbeing is also related to different factors including self-esteem, concern for appearance and self-care. These first two being the ones that have the greatest weight on wellbeing.
+The aforementioned work, proposes a model for analysing the psychological impact of confinement, as can be seen in Figure \ref{fig:vall_diagram}. This study demonstrate the negative correlation between psychological wellbeing and the symptomatologies that occur in mental illnesses. Furthermore, psychological wellbeing is also related to different factors including self-esteem, concern for appearance and self-care. According to the work, self-steem and concern are the ones that have the greatest weight on wellbeing.
 
 \begin{figure}[!htp]
     \centering
@@ -72,13 +72,13 @@ The aforementioned work, proposes a model for analysing the psychological impact
 % NO USADO -  carta a director anorexia: https://www.scielo.cl/scielo.php?pid=S2452-60532022005000319&script=sci_arttext
 
 
-This Master Thesis has been developed on the topic of Mental Health and the relationship of this with technology and social networks. The aim to know how the use of these impacts wellness. 
+This Master Thesis has been developed on the topic of Mental Health and its relationship with technology and social networks. The aim is to know how the use of these impacts wellness. 
 
 %After an exhaustive literature review, it has been determined that there is a significant association between inappropriate and prolonged use of social networks and the effects of mental health, finding mainly anxious, depressive, stressful and compulsive patterns among others. Therefore, they have determined that social networks can lead to public health problems~\cite{pozo2022impacto}.
 
-The importance of Eating Disorders after the pandemic has been understood, especially in young women today. Technology and in particular social networks, as a means of communication and expression, play a decisive role in the well-being of current society and particularly in the development of disorders.
+The importance of Eating Disorders after the pandemic has been understood, especially in young women. Technology and in particular social networks, as a means of communication and expression, play a decisive role in the well-being of current society and particularly in the development of disorders.
 
-Making use of these social networks, large amounts of information can be extracted and subsequently analysed, processed and used to improve the most critical part of these Eating Disorders, detection. The proposed system in this project will be used to help people to detect and analyse profiles of users potentially suffering from a disorder, in order to speed up the clinical diagnosis process, which is a key factor to take into account when treating a patient with this type of problem.
+Making use of these social networks, large amounts of information can be extracted and subsequently analysed, processed and used to improve the most critical part of these Eating Disorders: detection. The system proposed in this project will be used to help people to detect and analyse profiles of users potentially suffering from a disorder, in order to speed up the clinical diagnosis process, which is a key factor to take into account when treating a patient with this type of problem.
 
 For implementing this system, we will use text classification techniques for analysing data coming from social networks. The obtained results will be presented in an engaging user interface easy and quick to use for the user to get a prediction as soon as possible.
 
@@ -86,18 +86,16 @@ For implementing this system, we will use text classification techniques for ana
 
 \section{Project goals}
 \label{sec:goals}
-The goals of this Master Thesis have been defined from the beginning towards developing a social contribution that tackles one problem from the current society: Eating Disorders. With that in mind, the main goal of this project is to \textbf{develop a system for the analysis and detection of Eating Disorder-related mental health problems in social networks}. The application will integrate artificial intelligence technologies such as Natural Language Processing (NLP) and machine learning to detect these problems working with user data extracted from social media. The purpose of this tool is the \textbf{detection and analysis of user publications referring to Eating Behavior Disorders on social networks}. For this, several sub tasks are required:
+The goals of this Master Thesis have been defined from the beginning towards developing a social contribution that helps to tackle one problem from the current society: Eating Disorders. With that in mind, the main goal of this project is to \textbf{develop a system for the analysis and detection of Eating Disorder-related mental health problems in social networks}. The application will integrate artificial intelligence technologies such as Natural Language Processing (NLP) and machine learning to detect these problems working with user data extracted from social media. The purpose of this tool is the \textbf{detection and analysis of user publications referring to Eating Behavior Disorders on social networks}. For this, several sub tasks are required:
 
 \begin{itemize}
     \item Data collection, processing and analysis
     \item Design and implementation of machine learning models able to detect eating disorders from social media
     \item Training and evaluation the proposed models using the obtained datasets
     \item Development of a web application that integrates the proposed models for detecting and analyzing eating disorders
+    \item Integration of our system with a Task Automation Service (TAS) in order  to promote regulation activities
     \item System evaluation in a case study
-    \item Integration of our system with a Task Automation Service (TAS) in order to enhance our system's features
 \end{itemize}
-
-\clearpage
 
 \section{Structure of this document}
 
@@ -110,7 +108,7 @@ the project.
 
 \textbf{\textit{Chapter 3. Eating Disorder detection}} 
 
-In this chapter we will take a look on the Machine Learning techniques we have applied to get the necessary data to power the project. We will be explaining the data, the processing, the results and the validation we will implement and get from different models for taking a decision on what is better adjusted to our case.
+In this chapter we will take a look on the Machine Learning techniques  we have applied to perform the detection of eating disorder. First, we will describe the dataset used along with its processing. We will continue describing the model defined for the task of eating disorder detection. Finally, we will evaluate the proposed model and methods to identify which yields better performance.
 
 \textbf{\textit{Chapter 4. Architecture}} 
 
@@ -118,8 +116,8 @@ In this chapter we will break down the design and the patterns followed for impl
 
 \textbf{\textit{Chapter 5. Case study}}
 
-Here, the obtained results from the system will be presented for digging into what we have done.
+Here, we will check and evaluate the system in a real case.
 
 \textbf{\textit{Chapter 6. Conclusions}} 
 
-In this last chapter we will expose the conclusions taken from this Master Thesis and we will complete which are the future lines of work.
+In this last chapter we will expose the conclusions taken from this Master Thesis and we will depict some possible lines of future work.

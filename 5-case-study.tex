@@ -8,11 +8,22 @@
 
 This chapter shows the result obtained after the design and implementation of the platform. The main elements that the user encounters when navigating the platform will be shown. 
 
-The application itself has been decided to be called \textbf{PredEating}, since it is a system that helps in the early diagnosis of Eating Disorders. Its aim is tried to be filled by predicting an outcome taking the Twitter posts of the user that is analysed. Afterwards, some other features are displayed to the user who can decide what to do.
+The application itself has been decided to be called \textbf{PredEating}, since it is a system that helps in the early diagnosis of Eating Disorders. Its aim is filled by predicting an outcome taking the Twitter posts of the user that is analysed. Afterwards, some other features are displayed to the user who can decide what to do.
 
 \section{User flow}
 
-This section will show the pages implemented in the platform as well as their parts, what can be done in them and what they are for.
+This section will show the pages implemented in the platform as well as their parts, what can be done in them and what they are for. In the Figure~\ref{fig:userflow} the flow of the system with its details is illustrated.
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[scale=0.3]{img/case/Userflow.png}
+    \caption{User flow of PredEating.}
+    \label{fig:userflow}
+\end{figure}
+
+First, a user connects to our platform via web browser. Then, when the user makes a request of analysis it is sent to the server. This, together with the Machine Learning algorithm elaborate a prediction that is sent back to the web browser. If this prediction is positive, the server triggers an event and sends it to the automation platform. The platform executes its rules and sends the regulation actions to the web browser for the user to interact with them.
+
+In this mentioned web browser, the screens that can be seen are three: the \textit{landing} where the user introduces the Twitter profile for analysis; the \textit{prediction screen} where the results are shown; and a \textit{comparation screen} which gives the possibility of comparing the analysed user profile with another one. They are shown in the following.
 
 \myparagraph{Landing Page}
 This webpage is a simple landing that is displayed when the user access the platform, as it can be seen in Figure~\ref{fig:landing}. Here some information of the project can be seen, as well as some guidance to use the platform.
@@ -21,7 +32,7 @@ This webpage is a simple landing that is displayed when the user access the plat
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.4]{img/case/landing.png}
-    \caption{Landing page of PredEating}
+    \caption{Landing page of PredEating.}
     \label{fig:landing}
 \end{figure}
 
@@ -36,7 +47,7 @@ This screen is the one which shows the results of the prediction. While the requ
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.23]{img/case/predictionscreen.png}
-    \caption{Prediction screen}
+    \caption{Prediction screen.}
     \label{fig:predictionscreen}
 \end{figure}
 

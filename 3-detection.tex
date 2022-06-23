@@ -5,17 +5,17 @@
 
 \clearpage
 \section{Machine Learning approach}
-In order to design the solution we have taken into account the different perspectives that the project could take. To do so, we have decided to first experiment with labelled data in order to perform supervised learning. In this chapter we are going to talk about the data we have used for this project and the results obtained by using them in Machine Learning models.
+In order to design the solution we have taken into account the different perspectives that the project could take. To do so, we have decided to experiment with labelled data in order to perform supervised learning. Finally, it has been decided to make a system for detecting eds in text using labelled data. In this chapter we are going to talk about the data we have used for this project, the proposed model of Eating Disorder detection in text, and the results obtained in Machine Learning models.
 
 Furthermore, the data are texts, so we will have to take this into account for adopting models that use such data. We have mainly focused on the traditional Random Forest, Logistic Regression and SVM models and other more complex pre-trained models such as BERT, specifically using BERT, Mental roBERTa and mBERT.
 
-\subsubsection{Machine Learning architecture}
-First of all, we are going to review the architecture that has been followed to implement the different models and has helped us to optimise them. This architecture can be seen in Figure~\ref{fig:mlarchitecture}.
+\subsection{Machine Learning architecture}
+First of all, we are going to review the architecture that has been taken as reference to implement the different models which can be seen in Figure~\ref{fig:mlarchitecture}. The architecture of the project's system is implemented as such, without implementing the last process between deploy to production and fetch data.
 
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.55]{img/detection/mlarchitecture.jpeg}
-    \caption{Basic diagram of a Machine Learning architecture}
+    \caption{Basic diagram of a Machine Learning architecture.}
     \label{fig:mlarchitecture}
 \end{figure}
 
@@ -32,12 +32,7 @@ We are going to break down the different steps that are marked in that Figure fo
     
     \item \textbf{Prepare data}\\
     This procedure is going to be explained in what we have explained in Section~\ref{sec:preprocessing}. After cleaning, we need to prepare the data in certain format so that the model can process it.
-    
-    For doing so, we have applied the line of the Code~\ref{code:apply_preprocessing} in which we apply the preprocess function to all the rows of the Dataframe.
-    \begin{lstlisting}[language=Python, caption={Preprocessing application}, label={code:apply_preprocessing}]
-        data[`text`] = data.apply(lambda row: preprocess(row[`text`]), axis=1)
-    \end{lstlisting}
-    
+
     \item \textbf{Train model}\\
     Once everything is ready and cleaned up, we need to translate the information to a format that the model can understand and be more optimal. This process is called vectorization and is going to be explained in Section~\ref{sec:models}.
 
@@ -53,9 +48,9 @@ We are going to break down the different steps that are marked in that Figure fo
     \item \textbf{Deploy to production}\\
     If we achieve the results are above a certain minimum of accuracy, we can deploy them to production in order to see them working. 
 
-    For doing it, we use a package called pickle that help us to export the model to a file. Our application is a Python server as well as we will explain in Section~\ref{sec:server} so what we need to do in order to deploy it to production is to upload it to this platform.
+    For doing it, we use a package called pickle that help us to export the model to a file. Our application is a Python server as we will explain in Section~\ref{sec:server} so what we need to do in order to deploy it to production is to upload it to this platform.
 
-    We need to export the vectorizer as well because it is a particular object that help  us shape our data in the server also.\\
+    We need to export the vectorizer also because it is a particular object that help us shape our data in the server also.\\
 
 \end{itemize}
 
@@ -65,18 +60,20 @@ Having this clarified, a zoom in each part is going to be done for explaining th
 \label{sec:dataset}
 % https://arxiv.org/abs/1806.05258
 % paper del que se saco
-In order to train, validate and then classify and predict, data related to the case study was needed. For this purpose, a search for datasets was made, in which only one labelled dataset related to Eating Disorders has been found. The rest were dataset without labelled data so the project continued with the only dataset available. It is the one introduced in~\cite{https://doi.org/10.48550/arxiv.1806.05258} which investigates the creation of high-precision patterns to identify diagnoses of nine mental illnesses and obtains labeled data without having to manually label it.
+In order to train, validate, classify and predict with the model, data related to the case study was needed. For this purpose, a search for datasets was made, in which only one labelled dataset related to Eating Disorders has been found. The rest were dataset without labelled data so the project continued with the only dataset available. It is the one introduced in~\cite{https://doi.org/10.48550/arxiv.1806.05258} which investigates the creation of high-precision patterns to identify diagnoses of nine mental illnesses and obtains labeled data without having to manually label it.
 
-The dataset, which is called SMHD, was published in conjunction with the paper and is a dataset of social media posts from users with different mental health conditions, including schizophrenia, bipolar disorder, depression, anxiety, obsessive-compulsive disorder, eating disorder, post-traumatic disorder, autism and attention-deficit disorder. In this project we have filtered the data related to Eating Disorders in order to focus on the topic of interest.
+The dataset, which is called SMHD, was published in conjunction with the paper and is a dataset of social media posts from users with different mental health conditions, including schizophrenia, bipolar disorder, depression, anxiety, obsessive-compulsive disorder, eating disorder, post-traumatic disorder, autism and attention-deficit disorder. Data related to Eating Disorders was filtered in this project, in order to focus on the topic of interest.
 
 
 % estructura de los datos
 
 For being able to get more information of the data, an analysis of the information present in the SMHD dataset has been carried out. The objective was to adapt the data for ingesting it into the Machine Learning model. 
 
-To do this, the type of data and its content have been determined in order to decide which are useful and which can be discarded. Subsequently, all this information will be processed in order to adapt it the project needs. In this use case, as commented before, we want to predict whether a person suffers from Eating Disorder or not by what they write. It should also be noted that, being linguistic and the data being in English, the models have been trained to work in that language, although explorations have been made with other models, as we will discuss in the Section~\ref{sec:models}.
+To do this, the type of data and its content have been determined in order to decide which are useful and which can be discarded. Subsequently, all this information will be processed in order to adapt it the project needs. In this use case, as commented before, a prediction whether a person suffers from Eating Disorder or not by what they write is desired. It should also be noted that, being linguistic and the data being in English, the models have been trained to work in that language, although explorations have been made with other models, as we will discuss in the Section~\ref{sec:models}.
 
-This dataset consists of a set of Reddit posts, concretely 76203 entries of 331 users, labeled with binary classification for suffering an Eating Disorder. In the Table~\ref{tab:SMHDstatistics} there are some useful statistic that have been analysed thoroughly for knowing what we were working with.
+This dataset consists of a set of Reddit posts, concretely 76203 entries of 331 users, labeled with binary classification for suffering an Eating Disorder. In the Table~\ref{tab:SMHDstatistics} there are some useful statistic that have been analysed thoroughly for knowing what we were working with. 
+
+Some interesting data can be seen in that table, such as the total number of posts of the dataset, the total number of words with which the model is trained and the average number of words per post. It can be seen that the cases labeled as positive have more words per post, concretely a hundred more than the ones with negative labeling. Also these positive-labeled users have less average number of posts than the ones with negative labeling.
 
 \begin{table}[htp]
 \centering
@@ -84,70 +81,68 @@ This dataset consists of a set of Reddit posts, concretely 76203 entries of 331 
 \hline
                            & \textbf{Positive} & \textbf{Negative} \\ \hline
 \textbf{Total nº of posts} & 26295             & 49908             \\ \hline
-\textbf{Avg nº of posts}   &                   &                   \\ \hline
+\textbf{Avg nº of posts}   & 159.36            & 300.65            \\ \hline
 \textbf{Total nº of words} & 5829847           & 6448701           \\ \hline
 \textbf{Avg nº of words}   & 221.71            & 129.21            \\ \hline
 \end{tabular}
-\caption{Statistics of SMHD dataset}
+\caption{Statistics of SMHD dataset.}
 \label{tab:SMHDstatistics}
 \end{table}
 
-Also, the exploration of the data set yielded that  posts were collected around September 2015, being the first post taken from April 2008 and the last one from January 2018. We can determine from this that the time range in which our posts were added to the dataset was wide, around 10 years.
+Also, the exploration of the dataset yielded that  posts were collected around September 2015, being the first post taken from April 2008 and the last one from January 2018. We can determine from this that the time range in which our posts were added to the dataset was wide, around 10 years.
 
-It is interesting to see that in the dataset we have 26295 posts marked as positive and 49908 that are not. That means that around 34.5\% of the post are classified as positive as we can see in the table.
+It is interesting to see that in the dataset we have 26295 posts marked as positive and 49908 that are not. That means that around 34.5\% of the post are classified as positive as we can see in the table. The n\_words parameter represents the words per posts that a user has submitted in a certain time. Posts have an average length of 161 words with a standard deviation of 282.8. If a comparison with the longest post and this statistical parameters is made, it can be deducted that there could be outliers.
 
-The n\_words parameter represents the words per posts that a user has submitted in a certain time. Average posts have 161 words with a standard deviation of 282.8. If we compare the longest post that we have and compare it with the deviation and mean, we incur that there could be outliers.
-
- We have analyse the content of the the posts using different methods. One of them was using a wordcloud for getting the most used words in the dataset, as you can find in the Figure~\ref{fig:SMHDwordcloud}.
+The project is analysing the content of the the posts using different methods. One of them was using a wordcloud for getting the most used words in the dataset, as it can be found in the Figure~\ref{fig:SMHDwordcloud}.
 
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.3]{img/detection/SMHD_wordcloud.png}
-    \caption{Wordcloud of most common words in SMHD}
+    \caption{Wordcloud of most common words in SMHD.}
     \label{fig:SMHDwordcloud}
 \end{figure}
 
-In this imags the most used words can be seen represented in a diagram. The biggest words are the ones that are more used by the different profiles when publishing a post. The size of the words decreases as their frequency in the posts decreases.
+This image represent the most used words in the dataset. The biggest words are the ones that are more used by the different profiles when publishing a post. The size of the words decreases as their frequency in the posts decreases.
 
-Besides, we have compared the text written by users that are classified as positive from suffering an ED with the ones that are not suffering one. This has been done using scattertext~\cite{JasonKes0:online}, a library that allows us to represent the most frequent and infrequent words from the dataset in a comparing plot as shown in Figure~\ref{fig:scattertext}.
+Besides, this Master Thesis has compared the text written by users that are classified as positive from suffering an ED with the ones that are not suffering one. This has been done using scattertext~\cite{JasonKes0:online}, a library that allows us to represent the most frequent and infrequent words from the dataset in a comparing plot as shown in Figure~\ref{fig:scattertext}.
 
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.7]{img/detection/scattertext.png}
-    \caption{Representation of SMHD dataset with scatter text}
+    \caption{Representation of SMHD dataset with scatter text.}
     \label{fig:scattertext}
 \end{figure}
 
-As can be seen, the most and least frequent words in the dataset are represented on two axes. The blue colour corresponds to the words published by users who suffer from Eating Disorder and the red ones are those published by people who do not suffer from it. 
+As can be seen, the most and least frequent words in the dataset are represented on two axes. The blue colour corresponds to the words published by users who suffer from Eating Disorder and the red ones are those published by people who do not suffer from it.
 
-Looking at the most frequently used words, interesting conclusions can be drawn, such as that the words most frequently used by users suffering from Eating Disorder are related to health and food, while the most frequent words in the other group are related to games and entertainment. From this, the deduction is that there are significant differences among the used words in both cases, so this information can be used to create a classificator for detecting symptoms of Eating Disorders.
+Looking at the most frequently used words, interesting conclusions can be drawn, like the fact that the words most frequently used by users suffering from Eating Disorder are related to health and food. Meanwhile, the most frequent words in the other group are related to games and entertainment. From this, the deduction is that there are significant differences among the used words in both cases, so this information can be used to create a classificator for detecting symptoms of Eating Disorders.
 
-We can see that the most interesting words to analyse are those that are frequent on one axis of the graph and infrequent on the other, as they are more representative of a specific category. Taking a look at these words gives us a deeper understanding of the data we have.
+It can be seen that the most interesting words to analyse are those that are frequent on one axis of the graph and infrequent on the other, as they are more representative of a specific category. Taking a look at these words gives us a deeper understanding of the data we have.
 
 An analysis of the written main topics has been conducting using also the library scattertext with Empath enhancement. Empath~\cite{empath} is a dictionary that allows to extract several characteristics from the text and its main topic. The results can be seen in the Figure~\ref{fig:empath-scattertext}.
 
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.7]{img/detection/empath_scattertext.png}
-    \caption{Representation of the topics in SMHD dataset}
+    \caption{Representation of the topics in SMHD dataset.}
     \label{fig:empath-scattertext}
 \end{figure}
 
-In this plot we can have a better look on what are the main topics of which the people with and without Eating Disorder talks about. We find that the top five topics of people with Eating Disorder are health, medical emergency, sexual, nervousness and ugliness which are related with having a mental health problem. The top topics for people which don't suffer these problems are mainly related to entertainment, which is expected because the majority of profiles use Social Networks for such.
+In this plot we can have a better look on what are the main topics of which the people with and without Eating Disorder talk about. It can be found that the top five topics of people with Eating Disorder are health, medical emergency, sexual, nervousness and ugliness, which are related with having a mental health problem. The top topics for people which don't suffer these problems are mainly related to entertainment, which is expected because the majority of profiles use Social Networks for such.
 
 For a better understanding, these topics are printed taking into account the relation that they have with both categories: they are outliers from one in another. This means that a top topic for people with Eating Disorder is one that is not frequent in the people without it.
 
-After all these different aspects of the dataset have been analysed and understood, we can move on to the pre-processing part, where we adapt all this information for training our model.
+After all these different aspects of the dataset have been analysed and understood, the pre-processing part can be discussed, where the project adapts all this information for training its model.
 
 \section{Preprocessing}
 \label{sec:preprocessing}
-Once we had obtained the dataset with which we were going to do the training, we connected to a development environment in order to carry out the pre-processing. 
+Once obtained the dataset with which the training is going to be done, the project was developed in an online environment in order to carry out the pre-processing. 
 
-We load the dataset using Pandas library in the development platform, which allows us to study in depth the characteristics of these as indicated in the Section~\ref{sec:dataset} for the information of the SMHD dataset. What is more interesting for the project is to process the text to put it as input to the model, as it does not work with raw test, but we have to clean it and convert it.
+Dataset was loaded using Pandas library in the development platform, which allows to study in depth the characteristics of these as indicated in the Section~\ref{sec:dataset} for the information of the SMHD dataset. What is more interesting for the project is to process the text to put it as input to the model, as it does not work with raw test, but we have to clean it and convert it.
 
-In the Code~\ref{code:preprocessing} we see the treatment given to all the text in the dataset, in which we can see several processes that we are going to explain below.
+In the Code~\ref{code:preprocessing} we can see the treatment given to all the text in the dataset, in which we can see several processes that we are going to analyse below.
 
-\begin{lstlisting}[language=Python, caption={Preprocessing function for our data}, label={code:preprocessing}]
+\begin{lstlisting}[language=Python, caption={Preprocessing function for our data.}, label={code:preprocessing}]
 def preprocess(words):
     tokens = nltk.word_tokenize(words)
     porter = nltk.PorterStemmer()
@@ -173,12 +168,52 @@ The stemming algorithm used in this case is Porter's, which is an algorithm from
 In order to clean the text, we need to eliminate the part of it that doesn't have any linguistic value like punctuation marks(\textit{e.g.} `.',`!',`?', etc) or stopwords (words, in general adverbs, prepositions, conjunctions and articles, that are meaningless \textit{e.g.} ``the", ``a", ``an", etc.) among others, so we increase the relevance of the remaining items. In order to do so, we take the stopwords provided with the NTLK package and we search for occurences in our text for removing them afterwards.\\
 
 
-After applying these techniques, we can proceed to pass the data and train the models to fit our data. In the following Section, we will discuss this topic.
+After applying these techniques, the project proceeds to pass the data and train the models to fit its data. In the following Section, we will discuss this topic.
 
 \section{Models}
 As explained in the previous Section~\ref{sec:studies}, both traditional and newer machine learning methods have been employed. In this section we will look at what they consist of, the techniques used and the statistical results obtained.
 
-In addition, in each model we will analyse the results obtained with them in order to evaluate the optimisation that they may have. To do this, it is necessary to know some statistical measurements that are going to be explained here but before that, we need to understand the basic concepts for making these statistics, which are the possible results from a prediction.
+
+\label{sec:models}
+\subsection{Traditional Models}
+
+In this subsection we are going to talk about the models referred to in this project as traditional models, which, as it was said before, are historically more consolidated models. A simple diagram of the architecture of this model can be found in the Figure~\ref{fig:modelarch}.
+%% METER ARQUITECTURA MODELS
+
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[scale=0.4]{img/detection/ModelArchitecture.png}
+    \caption{Diagram of the model architecture.}
+    \label{fig:modelarch}
+\end{figure}
+
+In this architecture the process illustrated above is presented. The already processed text is passed as input to the vectorizer. This vectorizer transforms the sentences into vectors by features extraction. The aim of this process is to enhance the performance of the model. After having these vectors, the project ingests them into the model which analyse them and it provides the desired prediction.
+
+\subsection{BERT models}
+The architecture of this implementation is much more complex than the one presented before for the traditional models. It is based in Transformers and they have a similar architecture as them, which can be seen in Figure~\ref{fig:BERTarchitecture}.
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[scale=0.3]{img/detection/bertarchitecture.png}
+    \caption{Basic diagram of BERT architecture.}
+    \label{fig:BERTarchitecture}
+\end{figure}
+
+As it can be seen in the figure, the architecture that is implemented in our models consists of one block which is an encoder inherited from the Transformers architecture.
+
+The encoder of the model takes as input a sequence of input words, in our case the words coming from the SMHD dataset. These words are embedded and passed to the positional encoders. Here vectors are assigned to words depending on their positioning in a sentence for extracting the words' contextual meaning. Afterwards, they are passed to the blocks inside the encoder, which are the multi-head attention and a feed-forward network.  
+
+This multi-head attention block, which is a module that runs attention mechanisms in parallel, computes the attention vectors for each input for representing how each word of a specific user of the SMHD dataset is related to the others in the same sentence. Then, it is passed to a feed-forward network, which is on of the simplest type of artificial neural network in which the information moves forward.
+
+One of the pros of using a BERT model is the ability to handle this contextual information from our Eating Disorder dataset. It is because its bi-directional ability; it trains much faster and can be used in applications like ours. There are cons as well, for example that the length of input sentences can affect its computation. \\
+
+After knowing how this architecture work, the focus will be put on the validation and scores obtained when training the models for achieving a final decision on what model is the most optimal for the project.
+
+\section{Experimentation}
+The statistical results of the different algorithms are very diverse. In this section we will analyse the different parameters that we have tuned and the output for performing the validation.
+
+In addition, in each model we will analyse the results obtained with them in order to perform the validation. To do this, it is necessary to know some statistical measurements that are going to be explained here but before that, knowledge for understanding the basic concepts for making these statistics is needed. The possible outcomes of a prediction can be as follows.
 \begin{itemize}
     \item\textbf{ True positive (TP).} True positive is a result that has been predicted as positive and it is correctly predicted.
     \item\textbf{ False positive (FP).} False positive is a result that has been predicted as positive but it is incorrect, it should have been negative. 
@@ -186,7 +221,7 @@ In addition, in each model we will analyse the results obtained with them in ord
     \item \textbf{False negative (FN).} False negative is a result that has been predicted as negative but it is incorrect, it should have been positive.
 \end{itemize}
 
-With these concepts explained, we can dig into the concepts introduced before that we will use for evaluation of the models which are precision, recall, accuracy or F1-score.
+With these concepts explained, a further look for digging into the concepts introduced before can be taken. These will enable us to validate the models and they are called precision, recall, accuracy or F1-score.
 
 \begin{itemize}
     \item \textbf{Precision.} Precision is defined as the number of true positives that have been among all the positive predictions. In an equation it would look like the following.
@@ -208,46 +243,7 @@ With these concepts explained, we can dig into the concepts introduced before th
     
 \end{itemize}
 
-\label{sec:models}
-\subsection{Traditional Models}
-
-In this subsection we are going to talk about the models referred to in this project as traditional models, which, as we have said before, are historically more consolidated models. A simple diagram of the architecture of this model can be found in the Figure~\ref{fig:modelarch}.
-%% METER ARQUITECTURA MODELS
-
-
-\begin{figure}[!htp]
-    \centering
-    \includegraphics[scale=0.4]{img/detection/ModelArchitecture.png}
-    \caption{Diagram of the model architecture}
-    \label{fig:modelarch}
-\end{figure}
-
-In this architecture we illustrate the process told above. The already processed text is passed as input to the vectorizer. This vectorizer transforms the sentences into vectors by features extraction. The aim of this process is to enhance the performance of the model. After we have these vectors, we ingest them into the model which analyse them and provides the desired prediction.
-
-\subsection{BERT models}
-The architecture of this implementation is much more complex than the one presented before for the traditional models. It is based in Transformers and they have a similar architecture as them, which can be seen in Figure~\ref{fig:BERTarchitecture}.
-
-\begin{figure}[!htp]
-    \centering
-    \includegraphics[scale=0.3]{img/detection/bertarchitecture.png}
-    \caption{Basic diagram of BERT architecture}
-    \label{fig:BERTarchitecture}
-\end{figure}
-
-As it can be seen in the Figure, the architecture that is implemented in our models consists of one block which is an encoder inherited from the Transformers architecture.
-
-The encoder of the model takes as input a sequence of input words, in our case the words coming from the SMHD dataset. These words are embedded and passed to the positional encoders. Here vectors are assigned to words depending on their positioning in a sentence for extracting the words' contextual meaning. Afterwards, they are passed to the blocks inside the encoder, which are the multi-head attention and a feed-forward network.  
-
-This multi-head attention block, which is a module that runs attention mechanisms in parallel, computes the attention vectors for each input for representing how each word of a specific user of the SMHD dataset is related to the others in the same sentence. Then, it is passed to a feed-forward network, which is on of the simplest type of artificial neural network in which the information moves forward.
-
-One of the pros of using a BERT model is the ability to handle this contextual information from our Eating Disorder dataset. It is because its bi-directional ability; it trains much faster and can be used in applications like ours. There are cons as well, for example that the length of input sentences can affect its computation. \\
-
-After knowing how this architecture work, the focus will be put on the validation and scores obtained when training the models for achieving a final decision on what model is the most optimal for the project.
-
-\section{Experimentation}
-The statistical results of the different algorithms are very diverse. In this section we will analyse the different parameters that we have tuned and the output for performing the validation.
-
-\subsubsection{Random Forest}
+\subsection{Random Forest}
 The model used as explained in Chapter~\ref{chap:state-of-art} is the Random Forest, an algorithm of the sklearn package. We have optimised as much with a number of estimators equal to 400, as well as much as we could with GridSearchCV and we have got the optimised parameters shown in the Table~\ref{tab:RFoptimisedparams}.
 
 
@@ -261,7 +257,7 @@ min\_samples\_split & 10                       \\ \hline
 n\_estimators       & 400                      \\ \hline
 random\_state       & 0                        \\ \hline
 \end{tabular}
-\caption{Optimised parameters for Random Forest}
+\caption{Optimised parameters for Random Forest.}
 \label{tab:RFoptimisedparams}
 \end{table}
 
@@ -277,13 +273,13 @@ There is another table of interest that is the Confusion Matrix, which can be sh
 \textbf{Actual: Negative} & 10                           & 43                           & 53 \\ \hline
 \textbf{}                 & 53                           & 47                           &    \\ \hline
 \end{tabular}
-\caption{Random Forest confusion matrix}
+\caption{Random Forest confusion matrix.}
 \label{tab:RFconfusion}
 \end{table}
 
-It is visible that there were more errors when predicting a negative case, having predicted for these case ten False Positives. It can be seen that only four cases were wrongly predicted with a False Negative.
+It is visible that there were more errors when predicting a negative case, having ten False Positives in this case. Only four cases were wrongly predicted with a False Negative.
 
-\subsubsection{SVM}
+\subsection{SVM}
 We have also used the SVM model for our use case. The configurable hyperparameters of the model have been evaluated by means of a GridSearchCV, in order to optimise it as much as possible to our data. With that procedure we have obtained the parameters seen in Table~\ref{tab:SVMoptimisedparams}.
 
 \begin{table}[h]
@@ -295,14 +291,14 @@ We have also used the SVM model for our use case. The configurable hyperparamete
 gamma              & 0.01                     \\ \hline
 kernel             & rbf                      \\ \hline
 \end{tabular}
-\caption{Optimised parameters for SVM}
+\caption{Optimised parameters for SVM.}
 \label{tab:SVMoptimisedparams}
 \end{table}
 
 With this hyperparameters we have obtained the statistics shown in Table~\ref{tab:summarystatistics} which will be discussed in the end of the Chapter.
 
 
-\subsubsection{Logistic Regression}
+\subsection{Logistic Regression}
 Again, with the Logistic Model regression we proceeded to see which were the best hyperparameters for this model by using GridSearchCV, obtaining the parameters shown in Table~\ref{tab:LRoptimisedparams}.
 
 \begin{table}[]
@@ -314,7 +310,7 @@ C                  & 4.281332398719396        \\ \hline
 penalty            & l2                       \\ \hline
 solver             & liblinear                \\ \hline
 \end{tabular}
-\caption{Optimised params for Logistic Regression model}
+\caption{Optimised params for Logistic Regression model.}
 \label{tab:LRoptimisedparams}
 \end{table}
 
@@ -346,7 +342,7 @@ And now that we have gathered all the data from the different models, we can dis
 
 \subsection{Discussion}
 % exponer las medidas tomadas para cada modelo y dar una valoracion
-For clarifying, we are going to summarize the different statistics taken from the different models, for having a clear look of what we have performed so far. They can be seen in the Table~\ref{tab:summarystatistics}.
+For clarifying, the different statistics taken from the different models we are going to be summarized for having a clear look of what has been performed so far. They can be seen in the Table~\ref{tab:summarystatistics}.
 
 \begin{table}[h]
 \centering
@@ -360,7 +356,7 @@ BERT                & 0.566              & 0.529           & 0.529             &
 Mental roBERTa      & 0.737              & 0.735           & 0.735             & 0.735            \\ \hline
 mBERT               & 0.651              & 0.647           & 0.647             & 0.647            \\ \hline
 \end{tabular}
-\caption{Summary of the statistics for the different analysed models}
+\caption{Summary of the statistics for the different analysed models.}
 \label{tab:summarystatistics}
 \end{table}
 
@@ -377,7 +373,7 @@ This Table throw some light on the analysis performed on the models. We find int
 
 From this we can conclude that the models that yield better results are \textbf{Random Forest} and \textbf{Logistic Regression}, which have also a small execution time compared to BERT models. So, we have decided that both of these models can be our main model in our project. 
 
-For refining this decision, we can check the execution times of the models, which will be displayed in the following Table~\ref{tab:timestatistics}.
+For refining this decision, we can check the execution times of the models, which will be displayed in the Table~\ref{tab:timestatistics}. For these experiments the platform of the Jupyter Notebooks department and the Google Collab platform have been used. Both of which allow to create notebooks in which to execute code, specifically Python code, and to have a virtual environment in which to do so.
 
 \begin{table}[h]
 \begin{tabular}{|l|l|l|l|l|l|l|}
@@ -386,10 +382,9 @@ For refining this decision, we can check the execution times of the models, whic
 R.F.       & 1.762              & 1.776              & 1.759              & 1.758              & 1.776              & 1.7662             \\ \hline
 L.R. & 0.075              & 0.105              & 0.079              & 0.097              & 0.072              & 0.0856             \\ \hline
 \end{tabular}
-\caption{Execution and mean times of optimised Random Forest and L}
+\caption{Execution and mean times of optimised Random Forest and Linear Regression.}
 \label{tab:timestatistics}
 \end{table}
 
-As it can be seen, Logistic Regression is much faster than Random Forest model. This helps us to determine that \textbf{Linear Regression} is our selected algorithm. We can have a performance that is 1\% less in the statistics compared to Random Forest, but the speed of the prediction we gain has much more value for our app. This is because we want to make the system with the user in mind, reducing the complications to use it at minimum.
+As it can be seen, Logistic Regression is much faster than Random Forest model. This helps us to determine that \textbf{Linear Regression} is the selected algorithm. The project can have a performance that is 1\% less in the statistics compared to Random Forest, but the speed of the prediction that is gained has much more value for the application. This is because it is desired to make the system with the user in mind, reducing the complications to use it at minimum.
 
-For these experiments we have used the platform of the Jupiter Notebooks department and the Google Collab platform, both of which allow us to create notebooks in which to execute code, specifically Python code, and to have a virtual environment in which to do so.

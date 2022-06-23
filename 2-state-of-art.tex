@@ -1,6 +1,6 @@
 \chapter{State of Art}
 \label{chap:state-of-art}
-\textit{In this Chapter we will introduce the state of art of the project.}
+\textit{In this Chapter we will introduce the state of art of the project in relation with Eating Disorders and the work that has been done until now. Besides, we will discuss the technologies that enabled the realization of this project.}
 
 \clearpage
 \section{Mental illness: Eating Disorders}
@@ -14,9 +14,7 @@ In order to situate this type of illness, it is necessary to first understand Me
 % BIOPSYCHOSOCIAL EDs: https://withinhealth.com/blog/posts/what-causes-an-eating-disorder-a-biopsychosocial-perspective
 % https://www.researchgate.net/publication/8330681_Cognitive-Behavioral_Theories_of_Eating_Disorders
 
-The framework considers biological, psychological and social aspects and their interactions to understand health, illness and health care delivery. This model is both a practical clinical guide and a philosophy of clinical care. 
-
-The latter is concerned with understanding how suffering, disease and illness are affected from the molecular to the societal level. At the practical dimension, it is a way of looking at the subject's experience as a key element in human care, accurate diagnosis and health outcomes
+The framework considers biological, psychological and social aspects and their interactions to understand health, illness and health care delivery. This model is both a practical clinical guide and a philosophy of clinical care. The latter is concerned with understanding how suffering, disease and illness are affected from the molecular to the societal level. At the practical dimension, it is a way of looking at the subject's experience as a key element in human care, accurate diagnosis and health outcomes
 
 As can be seen in Figure \ref{fig:biopsychosocial}, the aforementioned model has 3 distinct parts, the \textbf{biological}, which includes physiological pathologies; the \textbf{psychological}, under which fall emotions, thoughts and behaviours such as distress, fear, avoidance, etc.; and the \textbf{social}, which includes cultural, socio-economic and socio-environmental factors such as circumstances that the subject may experience at work or in the family.
 
@@ -48,12 +46,12 @@ High parental control & Novelty-seeking traits & \begin{tabular}[c]{@{}c@{}}Inte
 & \begin{tabular}[c]{@{}c@{}}High levels of body \\ image dissatisfaction\end{tabular} & Intergenerational trauma\\ \hline
 & \begin{tabular}[c]{@{}c@{}}Personal history of \\ an anxiety disorder\end{tabular} & \\ \hline
 \end{tabular}
-\caption{Biopsychosocial model for Eating Disorders}
+\caption{Biopsychosocial model for Eating Disorders.}
 \label{tab:biopsychosocialForEDs}
 \end{table}
 
 
-These indicators potentially show, if present in a subject, the possible suffering of an Eating Disorder, although the final diagnosis must be made by a professional to confirm and start treatment. The process of the medical diagnostic of the main three Eating Disorders (Anorexia Nervosa, Bulimia Nervosa and Binge Eating) needs to be emphasized. These diseases and their diagnostic are going to be tackled hereafter.
+These indicators potentially show, if present in a subject, the possible suffering of an Eating Disorder, although the final diagnosis must be made by a professional to confirm and start treatment. 
 
 % TALK ABOUT METHODS TO DIAGNOSE EDs--------------------------------------------------------
 % https://www.aafp.org/pubs/afp/issues/2003/0115/p297.html
@@ -62,16 +60,16 @@ These indicators potentially show, if present in a subject, the possible sufferi
 
 As experts have discussed~\cite{pritts2003diagnosis}, a number of problems can mask the disorder and should be considered before a diagnosis of an Eating Disorder is made, such as hyperthyroidism, malignancy, inflammatory bowel disease, immunodeficiency, malabsorption, chronic infections, Addison's disease and diabetes. A preoccupation with weight is observed in most patients with a health problem that leads to eating problems, but it is the patients who are diagnosed with an Eating Disorder who manifest a distortion of body image and want to be underweight.
 
-According to the paper written by Garfinkel in 1995~\cite{garfinkel1995views}, several criteria for classifying and diagnosing Anorexia Nervosa, Bulimia Nervosa and Binge-Eating Disorder are defined.
+The process of the medical diagnostic of the main three Eating Disorders (Anorexia Nervosa, Bulimia Nervosa and Binge Eating) needs to be emphasized. These diseases and their diagnostic are going to be tackled hereafter. According to the paper written by Garfinkel in 1995~\cite{garfinkel1995views}, several criteria for classifying and diagnosing Anorexia Nervosa, Bulimia Nervosa and Binge-Eating Disorder are defined.
 
 
 \myparagraph{Anorexia Nervosa}
-Following the scientific papers, Anorexia Nervosa is the \textit{``eating disorder, universally associated with emaciation and commonly accompanied by marked increases in physical activity''}~\cite{bulik2005anorexia}. The criteria for diagnosis this illness is defined as follows.
+Following the scientific papers, Anorexia Nervosa is the \textit{``eating disorder, universally associated with emaciation and commonly accompanied by marked increases in physical activity''}~\cite{bulik2005anorexia}. The criteria for conducting the diagnosis this illness is defined as follows.
 \begin{itemize}
-    \item Refusal to maintain body weight at or above a minimally normal weight forage and height, e.a., weight loss leading to maintenance of body weight less than 85\% of that expected; or failure to make expected weight gain during a period of growth, leading to body weight less than 85\% of that expected.
+    \item Refusal to maintain body weight at or above a minimally normal weight forage and height, e.g., weight loss leading to maintenance of body weight less than 85\% of that expected; or failure to make expected weight gain during a period of growth, leading to body weight less than 85\% of that expected.
     \item Intense fear of gaining weight or becoming fat, even though underweight.
     \item Disturbance in the way in which one's body weight or shape is experienced, denial of the seriousness of current low body weight, or undue influence of body shape and weight on self-evaluation.
-    \item In post-menarcheal females amenorrhea, i.e., absence of at least 3 consecutive menstrual cycles. (A woman is considered to have amenorrhea if her periods occur only following hormone, e.o., estrogen administration.)
+    \item In post-menarcheal females amenorrhea, i.e., absence of at least 3 consecutive menstrual cycles. (A woman is considered to have amenorrhea if her periods occur only following hormone)
 \end{itemize}
 
 It has two sub types, which are i)Binge-Eating/Purging Type, in which the individuals have purging or binge-eating behaviour; ii) Restricting type, in which the subjects who suffer it limit calorie intake.
@@ -148,6 +146,52 @@ This Section will tackle the different technologies and techniques supporting th
 \subsection{Text Classification}
 This Master Thesis is based on text classification methods. These techniques allow us to identify and extract information from existing resources using Machine Learning. Using them, we can determine what a person thinks about a particular topic, in our case Eating Disorders. This position can be a value judgement, a communication intention or an emotional state.
 
+\subsubsection{Text Classification Techniques}
+
+To understand the different problems of Text Classification it is important to review the architecture of this, as can be seen in Figure \ref{fig:text-clasification-architecture}, which will generally found in almost all text classification cases conducted today. It is divided into 5 parts described below:
+
+
+\begin{itemize}
+    \item Corpus: input of documents in any format (XML, JSON, CSV, PDF, etc.)
+    \item Document processing: documents are preprocessed using linguistic tools like tokenization, part of speech tagging, lemmatization, stemming, etc.
+    \item Lexicons and linguistic resources: supporters of the whole architecture
+    \item Document analysis: key part where the documents that are preprocessed are interpreted using the linguistic resources
+    \item Scores: presentation of the results after analysing documents, using visualization tools.
+\end{itemize}
+
+
+\begin{figure}[!htp]
+    \centering
+    \includegraphics[scale=0.85]{img/state-of-art/text-classification-architecture.png}
+
+    \caption{Generic text classification system architecture~\cite{feldman2013techniques}.}
+    \label{fig:text-clasification-architecture}
+\end{figure}
+
+% TECNICAS DE ANALISIS DE SENTIMIENTOS ----------------------------------------
+% https://dl.acm.org/doi/abs/10.1145/2436256.2436274?casa_token=lqpbt-cBaHYAAAAA:x2yhJourTm6uZJepBIzElTx3v759Iv2UVKWlQi1CJJEsUy1qxoJfzYHWRs6XGJy9onXToAkI-Ow2kg
+
+Knowing this architecture, there are some problems to solve while performing the text classification that the expert have spotted as key for the success of the learning~\cite{feldman2013techniques}. There are different ways of approaching a problem of analysis such as this Master Thesis, generating different approaches that must be know before digging into the technical part. The problems of document-level classification, sentence-level classification and lexicon acquisition will be discussed.
+
+\myparagraph{Document-level classification}
+This form is the simplest of all text classification, which assumes that the document itself has a value judgement on a main subject expressed by the author of the subject. This approach can be tackled with both supervised and unsupervised learning. The first one takes the assumption that there is a finite set of classes(e.g. the simplest case, positive and negative) into which the document must be classified having training data for each one. The unsupervised approach is based on determining the semantic orientation (SO) of certain phrases in the document.
+
+Researchers have found good results when each document is represented as a simple bag of words, meanwhile the unsupervised approach has worked well in English but it is lacking linguistic resources when switching to other major spoken languages such as Chinese and Spanish and thus, throwing worse results.
+
+\myparagraph{Sentence-level classification}
+This approach is considering that a document can contain different opinions about the same subjects, so when we need to have a deeper zoom for analyse it and move to the sentence level this it the approach that is more adequate. It consist in assuming that each sentence has a different opinion, and then it can be relaxed analysing different phrases and collect them into groups for then apply the machine learning techniques.
+
+%\myparagraph{Aspect-based classification}
+%Aspect-based classification opens the spectrum of entities to which the analysis is done. While the previous two work when the author refers to one entity, in many cases the people talk about different attributes that need to be consider since the opinion about them can be different. This approach is defined as \textit{``research problem that focuses on the recognition of all expressions within a given document and the aspects to which they refer''}.
+
+%There are two ways of handling kind of analysis, the classical approach of this is extracting all noun phrases (NPs) and keep the ones whose frequency is higher an experimentally determined threshold, and the other one is use a phrase dependency parser that uses known expressions to search for additional aspects.
+
+%\myparagraph{Comparative classification}
+%Usually the authors provide their opinion about a subject through the comparison with other subjects so the goal of this technique is to assess which sentence contains a comparative opinion and extract the preferred entities in each. Researchers in this field have found the most common words that we use for the 98\% of the cases so with them we can start separating the comparison and analyse them properly~\cite{jindal2006identifying}.
+
+\myparagraph{Lexicon Acquisition}
+This part is usually the most crucial resource for the text classification algorithms and there are three ways to acquire it: i) manually, in which people code the lexicon by hand; ii) dictionary-based approaches in which with seed words the lexicon is expanded using external resources; iii) corpus-based approaches where a set of seed words the lexicon is expanded by using a large corpus of documents.\\
+
 \subsubsection{Machine Learning}
 As mentioned before, text classification is based on machine learning, which has different definitions, the first being the one provided by Arthur Samuel in 1959 which defines this concept as \textit{``Field of study that gives computers the ability to learn without being explicitly programmed''}~\cite{samuel1959some}.
 Over the years it has undergone a great evolution, having a newest definition like the one written in~\cite{el2015machine}: \textit{``Machine learning is an evolving branch of computational algorithms that are designed to emulate human intelligence by learning from the surrounding environment''}.
@@ -161,7 +205,7 @@ These desired classification could be for both discrete(\textit{e.g.} an integer
 \begin{figure}[!h]
     \centering
     \includegraphics[scale=0.27]{img/state-of-art/supervised-learning.jpeg}
-    \caption{Different types of Supervised Learning}
+    \caption{Different types of Supervised Learning.}
     \label{fig:supervised-learning}
 \end{figure}
 
@@ -196,8 +240,8 @@ Random Forest~\cite{breiman2001random} is a decision tree-based Machine Learning
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[scale=0.3]{img/detection/random-forest.jpg}
-    \caption{Random Forest model representation}
+    \includegraphics[scale=0.28]{img/detection/random-forest.jpg}
+    \caption{Random Forest model representation.}
     \label{fig:random-forest}
 \end{figure}
 
@@ -210,8 +254,8 @@ It is a binary linear classifier which has been enhanced to support non-linear d
 
 \begin{figure}[!htp]
     \centering
-    \includegraphics[scale=0.4]{img/detection/SVM.png}
-    \caption{SVM model representation}
+    \includegraphics[scale=0.37]{img/detection/SVM.png}
+    \caption{SVM model representation.}
     \label{fig:SVM}
 \end{figure}
 
@@ -223,7 +267,7 @@ Logistic regression is one of the most important statistical and data mining tec
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.6]{img/detection/LogisticRegression.png}
-    \caption{Logistic Regression representation model}
+    \caption{Logistic Regression representation model.}
     \label{fig:LogisticRegression}
 \end{figure}
 
@@ -232,7 +276,7 @@ Logistic regression is one of the most important statistical and data mining tec
 \myparagraph{BERT Models}
 %% METER ARQUITECTURA MODELS
 
-After explaining the traditional models, in which there is a mathematical algorithm that has to be trained to optimise the models to subsequently make the predictions, BERT or Bidirectional Encoder Representations from Transformers are going to be explained. 
+After explaining the traditional models, BERT or Bidirectional Encoder Representations from Transformers are going to be explained. 
 
 BERT models~\cite{acheampong2021transformer} are pre-trained and open source machine learning techniques based on neural networks for NLP developed by Google in 2018. These algorithms have been used in the company's search engine since 2019. BERT makes use of Transformer, an attention mechanism that learns the contextual relationships between words and includes two different mechanisms, an encoder that reads the input text and a decoder that produces a prediction. This encoder is the necessary element, because BERT's goal is to generate a language model.
 
@@ -249,7 +293,7 @@ In the NSP training process, the model is provided with pairs of sentences as in
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.35]{img/detection/BERTinput.png}
-    \caption{BERT input processing in NSP}
+    \caption{BERT input processing in NSP.}
     \label{fig:BERTinput}
 \end{figure}
 Once the input text has been pre-processed, to make the prediction of the second sentence over the first, the following is needed.
@@ -286,14 +330,14 @@ Natural Language Toolkit~\cite{NLTKNatu6:online} (or NTLK) is a set of libraries
 Sklearn~\cite{scikitle66:online} is an open source library that includes several types of classification, regression and cluster analysis algorithms, designed to work together with NumPy or SciPy (another library of mathematical tools and algorithms). Algorithms such as SVM, Random Forest, K-means, etc. are implemented in it.
 
 
-\subsubsection{Server framework}
+\subsection{Server framework}
 In the part designed as a server, a study was made of the technologies available for its implementation and it was decided to use the Flask framework for Python due to the previous experience in the Bachelor Thesis that the author already had and the ease of implementation of this technology.
 
 \myparagraph{Python Flask}
 Flask~\cite{Welcomet8:online} is a micro web framework written in Python by Armin Ronacher of Pocoo, described as a microframework because of its minimalistic approach, requiring no particular libraries or tools. It does not add any integration with third-party components but common functions, although it does support the integration of extensions to add new functionalities such as form validation, upload handling, open authentication technologies, etc. An example of applications that use this framework are Pinterest and LinkedIn.
 
 
-\subsubsection{App development}
+\subsection{App development}
 To develop the application the future potential of the system was taken into accound and the decision of opting for a modular and multiplatform integration was taken. That is the reason why Flutter has its place in the project, which will be described next.
 
 \myparagraph{Flutter}
@@ -302,69 +346,19 @@ Flutter~\cite{FlutterB22:online} is an open source SDK created by Google for app
 It is programmed in Dart, an open programming language also developed by Google, offering a modern alternative to javascript, whose philosophy is defined by one of its engineers as a \textit{``structured but flexible language for web programming''}.\\
 
 
-The fundamentals of Machine Learning together with models and technologies have been reviewed, Text Classification Techniques that need to be implemented for putting our project to work are going to be discussed.
-
-\subsubsection{Text Classification Techniques}
-
-To understand the different problems of Text Classification it is important to review the architecture of this, as can be seen in Figure \ref{fig:text-clasification-architecture}, which will generally found in almost all text classification cases conducted today. It is divided into 5 parts described below:
-
-
-\begin{itemize}
-    \item Corpus: input of documents in any format (XML, JSON, CSV, PDF, etc.)
-    \item Document processing: documents are preprocessed using linguistic tools like tokenization, part of speech tagging, lemmatization, stemming, etc.
-    \item Lexicons and linguistic resources: supporters of the whole architecture
-    \item Document analysis: key part where the documents that are preprocessed are interpreted using the linguistic resources
-    \item Scores: presentation of the results after analysing documents, using visualization tools.
-\end{itemize}
-
-
-\begin{figure}[!htp]
-    \centering
-    \includegraphics[scale=0.85]{img/state-of-art/text-classification-architecture.png}
-
-    \caption{Generic text classification system architecture~\cite{feldman2013techniques}}
-    \label{fig:text-clasification-architecture}
-\end{figure}
-
-% TECNICAS DE ANALISIS DE SENTIMIENTOS ----------------------------------------
-% https://dl.acm.org/doi/abs/10.1145/2436256.2436274?casa_token=lqpbt-cBaHYAAAAA:x2yhJourTm6uZJepBIzElTx3v759Iv2UVKWlQi1CJJEsUy1qxoJfzYHWRs6XGJy9onXToAkI-Ow2kg
-
-Knowing this architecture, there are some problems to solve while performing the text classification that the expert have spotted as key for the success of the learning~\cite{feldman2013techniques}. There are different ways of approaching a problem of analysis such as this Master Thesis, generating different approaches that must be know before digging into the technical part. The problems of document-level classification, sentence-level classification and lexicon acquisition will be discussed.
-
-\myparagraph{Document-level classification}
-This form is the simplest of all text classification, which assumes that the document itself has a value judgement on a main subject expressed by the author of the subject. This approach can be tackled with both supervised and unsupervised learning. The first one takes the assumption that there is a finite set of classes(e.g. the simplest case, positive and negative) into which the document must be classified having training data for each one. The unsupervised approach is based on determining the semantic orientation (SO) of certain phrases in the document.
-
-Researchers have found good results when each document is represented as a simple bag of words, meanwhile the unsupervised approach has worked well in English but it is lacking linguistic resources when switching to other major spoken languages such as Chinese and Spanish and thus, throwing worse results.
-
-\myparagraph{Sentence-level classification}
-This approach is considering that a document can contain different opinions about the same subjects, so when we need to have a deeper zoom for analyse it and move to the sentence level this it the approach that is more adequate. It consist in assuming that each sentence has a different opinion, and then it can be relaxed analysing different phrases and collect them into groups for then apply the machine learning techniques.
-
-%\myparagraph{Aspect-based classification}
-%Aspect-based classification opens the spectrum of entities to which the analysis is done. While the previous two work when the author refers to one entity, in many cases the people talk about different attributes that need to be consider since the opinion about them can be different. This approach is defined as \textit{``research problem that focuses on the recognition of all expressions within a given document and the aspects to which they refer''}.
-
-%There are two ways of handling kind of analysis, the classical approach of this is extracting all noun phrases (NPs) and keep the ones whose frequency is higher an experimentally determined threshold, and the other one is use a phrase dependency parser that uses known expressions to search for additional aspects.
-
-%\myparagraph{Comparative classification}
-%Usually the authors provide their opinion about a subject through the comparison with other subjects so the goal of this technique is to assess which sentence contains a comparative opinion and extract the preferred entities in each. Researchers in this field have found the most common words that we use for the 98\% of the cases so with them we can start separating the comparison and analyse them properly~\cite{jindal2006identifying}.
-
-\myparagraph{Lexicon Acquisition}
-This part is usually the most crucial resource for the text classification algorithms and there are three ways to acquire it: i) manually, in which people code the lexicon by hand; ii) dictionary-based approaches in which with seed words the lexicon is expanded using external resources; iii) corpus-based approaches where a set of seed words the lexicon is expanded by using a large corpus of documents.\\
-
-These are the challenges that can be found when working with Text Classification that must be known before going into the technical details. After in this Thesis we will talk about how do the project tackles and resolves the encountered problems. 
+The fundamentals of Machine Learning together with models and technologies have been reviewed, now in this Thesis we will talk about how do the project tackles and resolves the encountered problems. 
 
 \subsection{Semantic Task Automation}
 
-Semantic task automation will be used in this project as we mentioned in Section~\ref{sec:goals}. Using it, the project aims to provide user features for enhancing our system and provide it with different functionalities. To learn more about it, a review of existing resources on task automation services and in semantic techniques, concretely EWE has been conducted has been carried. The outcomes are going to be described here.
+Semantic task automation will be used in this project as we mentioned in Section~\ref{sec:goals}. Using it, the project aims to provide user features for enhancing our system and provide it with different functionalities. The outcomes are going to be described here.
 
 \subsubsection{Task Automation Services}
 % https://www.gsi.upm.es/ontologies/ewe/ pillar de aqui estructura
 Nowadays, automation is found in almost every task we perform, so much so that we are even unable to recognise that automation. This automations have also spread to the Web field, raising the need to be able to orchestrate and centralise them. Hence the need to create TAS or Task Automation Services~\cite{7155422}.
 
-These Task Automation is a area which is increasing rapidly in these times and Task Automation Service provide a friendly user interface. They can be presented in really different ways, such as websites or as mobile apps, where non-technical users can create their own automations in them. These automations take the form of Event-Condition-Action in which some actions are executed when a trigger happens. 
+These Task Automation is a area which is increasing rapidly in these times and Task Automation Service provide a friendly user interface. They can be presented in really different ways, such as websites or as mobile apps\footnote{Some of the most popular services are called: ifttt, Zapier, CouldWork, Onx, Atooma or AutomateIt.}, where non-technical users can create their own automations in them. These automations take the form of Event-Condition-Action in which some actions are executed when a trigger happens. 
 
-Some of the most popular services are called: ifttt, Zapier, CouldWork, Onx, Atooma or AutomateIt.
-
-One interesting branch that is part of Semantic Web which is being investigated~\cite{electronics9081194} is the Task Automation Services using semantic techniques coming. This allows to have a standard data schema designed to adapt to a lot of use cases. In this context, we have analysed and researched on Evented WEb ontology (EWE), which is described in the following.
+One interesting branch that is part of Semantic Web which is being investigated~\cite{electronics9081194} is the Task Automation Services using semantic techniques. This allows to have a standard data schema designed to adapt to a lot of use cases. In this context, we have analysed and researched on Evented WEb ontology (EWE) because is the technology on which our platform, which is described in the following.
 
 \subsubsection{EWE}
 % EWE MAIN ENTITIES  DIAGRAM
@@ -375,7 +369,7 @@ The diagram that represents EWE and its main concepts is the one that can be fou
 \begin{figure}[!htp]
     \centering
     \includegraphics[scale=0.28]{img/state-of-art/EWEdiagram.png}
-    \caption{Diagram of EWE entities and its relations}
+    \caption{Diagram of EWE entities and its relations.}
     \label{fig:ewediagram}
 \end{figure}
 
